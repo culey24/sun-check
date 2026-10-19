@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: suncheck
+    name: uvie
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist

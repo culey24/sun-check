@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <div className="mx-auto flex min-h-full w-full max-w-md flex-col bg-neutral-100">
       <header className="sticky top-0 z-10 flex items-center justify-center border-b border-neutral-200 bg-white/90 px-4 py-3 backdrop-blur">
-        <span className="text-lg font-bold tracking-tight text-primary">SunCheck</span>
+        <span className="text-lg font-bold tracking-tight text-primary">Uvie</span>
       </header>
 
       <main className="flex-1 px-4 py-5 pb-24">

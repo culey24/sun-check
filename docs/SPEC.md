@@ -1,4 +1,4 @@
-# SPEC — UV Sunscreen Sticker App
+# SPEC — Uvie (UV Sunscreen Sticker App)
 
 ## 1. Overview
 

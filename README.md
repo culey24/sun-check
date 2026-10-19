@@ -1,4 +1,4 @@
-# SunCheck
+# Uvie
 
 Web app that pairs with a UV-sensitive photochromic sticker. The app scans the
 sticker's color and alerts you to reapply sunscreen when it turns dark.

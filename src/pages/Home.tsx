@@ -33,7 +33,7 @@ export default function Home() {
           Know exactly when to reapply your sunscreen.
         </h1>
         <p className="text-neutral-600">
-          SunCheck reads your UV-sensitive sticker and warns you the moment it turns
+          Uvie reads your UV-sensitive sticker and warns you the moment it turns
           dark — so you never get caught out in the sun.
         </p>
         <Link to="/scan" className={buttonClasses('primary', 'lg', true, 'mt-1')}>

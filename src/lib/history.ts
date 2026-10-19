@@ -1,6 +1,6 @@
 import type { ScanResult } from './types';
 
-const STORAGE_KEY = 'suncheck.history.v1';
+const STORAGE_KEY = 'uvie.history.v1';
 const MAX_ENTRIES = 50;
 
 export function loadHistory(): ScanResult[] {

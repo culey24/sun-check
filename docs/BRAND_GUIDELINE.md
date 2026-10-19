@@ -2,9 +2,9 @@
 
 > Temporary foundation. Expect changes as the brand matures.
 
-## 1. Brand Name (Placeholder)
+## 1. Brand Name
 
-**SunCheck** — working title. Replace once the name is finalized.
+**Uvie** — the product name.
 
 ## 2. Positioning
 
@@ -16,8 +16,8 @@ reapply sunscreen, without guesswork.
 
 ## 3. Logo
 
-- Not finalized. Use the wordmark "SunCheck" set in the primary typeface for now.
-- Keep clear space of at least the height of the "S" on all sides.
+- Not finalized. Use the wordmark "Uvie" set in the primary typeface for now.
+- Keep clear space of at least the height of the "U" on all sides.
 - Never stretch, recolor arbitrarily, or add effects.
 
 ## 4. Color
