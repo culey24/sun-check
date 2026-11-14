@@ -1,11 +1,241 @@
 % Section 2 - Evaluating the Market
-\section{Evaluating the Market}
+% Citations use natbib (author-year, APA style); entries live in the References list in main.tex.
+\section{Evaluating the Market}\label{sec:market-evaluation}
 
+%====================================================================
 \subsection{Industry Analysis}
-TODO
 
-\subsection{Market Size Analysis}
-Total addressable market (TAM), serviceable available market (SAM) and target market. TODO
+\subsubsection{Global and Vietnam Sun Care Market Size}
+Vietnam's sun care market is growing quickly because of hot weather and stronger
+daily skincare habits among young buyers. According to \citet{marketsdata2023},
+Vietnam's sun care sector reached USD 124.12 million in 2022 and is forecast to
+climb to USD 244.79 million by 2030, reflecting a high compound annual growth rate
+(CAGR) of 8.86\% from 2023 to 2030 (Figure~\ref{fig:vn-market}).
 
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=4.3in]{figures/fig2-1_vietnam_sun_care_market.png}
+  \caption{Vietnam Sun Care Market size and 8.86\% CAGR forecast (Source: \citealp{marketsdata2023}).}
+  \label{fig:vn-market}
+\end{figure}
+
+On a global scale, the sun care industry shows steady long-term expansion as
+consumers become more aware of UV damage and premature skin aging. According to
+\citet{imarc2026}, the global sun care products market rose from USD 11.49 billion
+in 2020 to USD 14.81 billion in 2025, and it is projected to reach USD 19.09
+billion in 2030 and USD 23.72 billion by 2034 at a 5.21\% CAGR
+(Figure~\ref{fig:global-market}). Asia-Pacific holds the largest regional share
+worldwide at 33.0\%.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=4.0in]{figures/fig2-2_global_sun_care_market.png}
+  \caption{Global Sun Care Products Market growth trend from 2020 to 2034 (Source: \citealp{imarc2026}).}
+  \label{fig:global-market}
+\end{figure}
+
+Comparing both forecasts shows that Vietnam grows significantly faster than the
+global average (8.86\% vs.\ 5.21\%), confirming strong regional demand inside
+Asia-Pacific's 33.0\% share. Yet almost all current spending goes toward
+sunscreen creams and sprays. Consumers still have few practical tools to verify
+when their protection fades during outdoor study, travel, or sports.
+
+\subsubsection{Key Market Demand Drivers}
+Vietnam's tropical climate creates year-round demand for dependable UV protection.
+Because the country sits close to the equator, major cities such as Ho Chi Minh
+City, Da Nang, and Hanoi regularly record Very High to Extreme UV Index levels of
+10 to 12+ \citep{who2022}. Unlike heat or bright sunlight, ultraviolet rays are
+invisible, so people rarely realize skin damage is happening until redness or
+tanning appears.
+
+This invisibility causes a clear everyday skincare pain point. Skin experts at the
+American Academy of Dermatology advise reapplying sunscreen every two hours, or
+right after swimming and heavy sweating \citep{aad2023}. In practice, busy
+university students and commuters easily forget their last application or assume a
+morning layer lasts all afternoon. A wearable skin sticker that visibly shifts
+color turns an invisible UV risk into a clear reminder.
+
+Modern lifestyles and widespread smartphone access also support Uvie's adoption.
+Sunscreen in Vietnam has grown into an everyday skincare step alongside booming
+outdoor sports like running, cycling, and pickleball \citep{statista2024}. Since
+young urban adults carry smartphones daily, Uvie works directly through a normal
+camera and free web app (\href{https://sun-check.onrender.com}{sun-check.onrender.com})
+without requiring extra electronic devices.
+
+\subsubsection{Industry Barriers and Risks}
+Developing a wearable UV sticker in Vietnam still involves several practical
+technical challenges. In hot and humid outdoor conditions, the patch must stay
+comfortably attached through sweat without peeling off early or irritating
+sensitive skin. At the same time, the photochromic gel layer requires careful
+testing so its color change matches real sunscreen wear-off accurately, while
+camera scans remain consistent across different phones and sunlight angles.
+
+From a commercial perspective, Uvie faces seasonal weather swings and customer
+education barriers. Outdoor sun care spending tends to peak during bright sunny
+months and slow down slightly during extended rainy seasons. Furthermore, UV
+patches remain unfamiliar to most Vietnamese shoppers compared to basic lotions,
+so Uvie must provide clear tutorials and visible test results before buyers trust
+making patches part of their routine.
+
+%====================================================================
+\subsection{Market Size Analysis (TAM, SAM, Target Market)}
+To stay aligned with Section~\ref{sec:financial} (Financial Projection), this
+market estimation uses the same retail price of VND 89,000 per package, unit
+production cost of VND 34,000, gross profit of VND 55,000, and customer lifetime
+value (LTV) model of three packages per year over two years (VND 330,000).
+Supplier sample testing will confirm the number of patches per package, so
+estimates count packages sold.
+
+Looking at the Total Addressable Market (TAM), \citet{marketsdata2023} valued
+Vietnam's sun care market at USD 124.12 million in 2022 with an 8.86\% growth
+rate, putting the 2025--2026 sector near USD 160 million ($\sim$VND 4,000
+billion). With around 30 million Vietnamese adults aged 18 to 50 using sun
+protection at an annual benchmark of $\sim$VND 133,000 per user, TAM reaches
+roughly VND 4,000 billion per year.
+
+For the Serviceable Available Market (SAM), Uvie targets young urban adults aged
+18 to 35 in five major cities (Ho Chi Minh City, Hanoi, Da Nang, Can Tho, Hai
+Phong) who regularly wear sunscreen and own smartphones, estimated at 4.5 million
+consumers. At three packages annually (VND 267,000 per user), SAM equals
+$4.5\text{ million} \times 3 \times \text{VND } 89{,}000 = \text{VND } 1{,}201.5$
+billion per year ($\sim$USD 48.1 million, or 13.5 million packages).
+
+Our three-year Target Market (SOM) matches Section~\ref{sec:financial} directly.
+In Year 1, an online launch in Ho Chi Minh City targets 12,000 new customers and
+18,000 packages (VND 1,602 million, 0.13\% of SAM). Year 2 expansion into Hanoi,
+Da Nang, and pharmacies grows sales to 30,000 new buyers and 50,000 packages
+(VND 4,450 million, 0.37\% of SAM). By Year 3, nationwide beauty chains reach
+60,000 new buyers and 100,000 packages (VND 8,900 million, 0.74\% of SAM).
+
+\begin{table}[ht]
+\centering\small
+\caption{Summary of Market Size Estimation (TAM, SAM, and Target Market)}\label{tab:market-size}
+\begin{tabular}{@{}L{1.5cm}L{3.8cm}L{3.0cm}L{3.4cm}L{1.6cm}@{}}
+  \toprule
+  \textbf{Market Tier} & \textbf{Target Segment} & \textbf{Volume / Customer Base} & \textbf{Estimated Value (VND / USD)} & \textbf{Share of SAM}\\
+  \midrule
+  \textbf{TAM} & All Vietnam adult sun care users (18--50 yrs) & $\sim$30.0 million users & VND 4,000B ($\sim$USD 160M) & --\\
+  \addlinespace
+  \textbf{SAM} & Urban smartphone \& sunscreen users (18--35 yrs) & 4.5M users (13.5M packs/yr) & VND 1,201.5B ($\sim$USD 48.1M) & 100.0\%\\
+  \addlinespace
+  \textbf{SOM -- Year 1} & HCMC launch (online D2C, students, runners) & 18,000 packs (12,000 new users) & VND 1,602M ($\sim$USD 64,080) & 0.13\%\\
+  \addlinespace
+  \textbf{SOM -- Year 2} & HCMC, Hanoi, Da Nang + pharmacies & 50,000 packs (30,000 new users) & VND 4,450M ($\sim$USD 178,000) & 0.37\%\\
+  \addlinespace
+  \textbf{SOM -- Year 3} & Nationwide beauty chains + repeat buyers & 100,000 packs (60,000 new users) & VND 8,900M ($\sim$USD 356,000) & 0.74\%\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+Capturing only 0.74\% of urban SAM by Year 3 shows that Uvie's sales forecast is
+grounded and realistic. Launching in Ho Chi Minh City before expanding through
+pharmacies and beauty chains lets the team test marketing efficiency locally,
+while VND 55,000 gross profit per package and VND 330,000 LTV provide healthy
+margin room as scale grows.
+
+%====================================================================
 \subsection{Competitive Landscape Overview}
-TODO
+
+\subsubsection{Key Competitors Comparison}
+Among direct sticker competitors, SPOTMYUV uses Dermatrue film that absorbs
+sunscreen, staying clear while protected and turning purple once protection fades.
+However, on its official website (Figure~\ref{fig:spotmyuv}), a 16-pack retails for
+USD 16.49 ($\sim$VND 415,000, or $\sim$VND 26,000 per sticker), making daily use
+unaffordable for Vietnamese students. It also lacks a phone app, leaving back or
+shoulder stickers hard to check and color shifts tricky to judge in sunlight.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=3.8in]{figures/fig2-3_spotmyuv_product_page.png}
+  \caption{SPOTMYUV official product page showing purple detection stickers and USD 16.49 retail price (Source: \citealp{spotmyuv2024}).}
+  \label{fig:spotmyuv}
+\end{figure}
+
+Past hardware wearables also reveal clear lessons on price and skin-level
+accuracy. In 2018, L'Or\'eal launched the La Roche-Posay My Skin Track UV clip-on
+sensor at Apple Stores for USD 59.95 using battery-free NFC technology
+\citep[Figure~\ref{fig:myskintrack}]{porter2018}. Although innovative, it was
+later discontinued because high hardware prices slowed mass adoption, and clipping
+it onto clothes only tracked ambient UV rays rather than whether sunscreen on skin
+had worn away.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=3.3in]{figures/fig2-4_loreal_my_skin_track_uv.png}
+  \caption{L'Or\'eal My Skin Track UV clip-on sensor mechanism and USD 59.95 launch price (Source: The Verge / L'Or\'eal USA, 2018).}
+  \label{fig:myskintrack}
+\end{figure}
+
+Indirect substitutes also leave practical gaps for everyday buyers. Clip-on
+smartphone UV cameras like UVLOOK (around USD 40--90 online) display coverage
+visually, yet force users to carry an extra device that feels awkward during
+outdoor sports or beach trips. Free UV apps like UVLens and QSun only track general
+weather forecasts or basic countdown timers without checking real sunscreen loss
+on skin, so users can still miss uneven coverage. Table~\ref{tab:competitors}
+summarizes this comparison.
+
+\begin{table}[ht]
+\centering\small
+\caption{Competitor Comparison Matrix}\label{tab:competitors}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}L{2.5cm}L{2.2cm}L{2.6cm}L{2.2cm}L{2.3cm}L{2.0cm}@{}}
+  \toprule
+  \textbf{Feature} & \textbf{Uvie (Our Project)} & \textbf{SPOTMYUV} & \textbf{L'Or\'eal My Skin Track} & \textbf{UV Cameras (UVLOOK)} & \textbf{UV Apps (UVLens)}\\
+  \midrule
+  \emph{Checks real sunscreen on skin} & Yes (Patch + AI) & Yes (Patch only) & No (Air UV only) & Yes (Optical lens) & No (Weather only)\\
+  \addlinespace
+  \emph{Phone app \& alert reminder} & Yes (Free web app) & No & Yes (NFC scan) & No & Timer only\\
+  \addlinespace
+  \emph{Easy to check hard-to-see areas} & Yes (Camera + timer) & Hard to see & Yes (Clip-on) & Hard on back/neck & N/A\\
+  \addlinespace
+  \emph{Water \& sweat resistant} & Yes & Yes & Yes & No (Electronic) & N/A\\
+  \addlinespace
+  \emph{Price affordability in VN} & High (VND 89k/pack) & Low ($\sim$VND 415k) & Low ($\sim$USD 59.95, defunct) & Low (USD 40--90) & Free\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Competitive Pressure Analysis (Porter's Five Forces)}
+Using Porter's Five Forces model, direct rivalry inside Vietnam's smart UV-patch
+niche remains low because major cosmetics brands focus on creams and sprays rather
+than verification tools. By contrast, the threat of substitutes is high since many
+consumers rely on free habits like guessing a two-hour schedule, wearing
+sun-protective jackets, or checking weather apps. Instead of fighting sunscreen
+brands, Uvie acts as an affordable companion tool.
+
+Across the remaining forces, buyer bargaining power is moderate because consumers
+have many skincare choices, though our VND 89,000 retail price keeps trial risk
+low. Supplier power is low to moderate as skin-safe hydrocolloid adhesives and
+photochromic dyes are available from multiple Asian manufacturers. Finally, the
+threat of new entrants is moderate: printing plain stickers is simple, yet
+matching skin-safe UV gel with a reliable AI camera reader requires careful
+testing.
+
+\subsubsection{Uvie's Competitive Advantage}
+Uvie builds a distinct advantage by combining an instant color-changing sticker
+with a free camera-based AI web app at
+\href{https://sun-check.onrender.com}{sun-check.onrender.com}. Instead of leaving
+commuters or outdoor athletes to guess slight color shifts in bright glare or
+inspect back patches manually, the web app evaluates patch color objectively and
+triggers timely reapplication reminders inside any mobile browser without
+downloads or extra gadgets.
+
+Equally important is Uvie's student-friendly pricing in Vietnam. At VND 89,000 per
+package, Uvie costs far less than imported USD 16.49 SPOTMYUV packs, USD 40--90 UV
+cameras, or discontinued USD 59.95 clip-on sensors. Combining an affordable price
+with simple digital verification supports repeat purchases of three packages per
+year across our urban target segment.
+
+%====================================================================
+\subsection{AI Usage Evidence Log}
+\begin{table}[ht]
+\centering\small
+\caption{AI Usage Evidence Log (Section 2)}\label{tab:ai-log-s2}
+\begin{tabular}{@{}L{3.0cm}L{2.4cm}L{4.8cm}L{3.8cm}@{}}
+  \toprule
+  \textbf{Member \& Section} & \textbf{AI Tool} & \textbf{Prompt Used} & \textbf{Purpose / Support Function}\\
+  \midrule
+  \textbf{Pham Nguyen Hoang Ha (2452296) -- Sec.~2} & Antigravity AI \& Browser Subagent & Search and capture official reports for Vietnam \& global sun care markets, plus SPOTMYUV and L'Or\'eal specs. & Gather secondary market data, verify evidence screenshots, and format APA citations.\\
+  \bottomrule
+\end{tabular}
+\end{table}

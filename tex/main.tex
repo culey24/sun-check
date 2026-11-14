@@ -54,8 +54,19 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 
+% --- Citations (APA-style author-year), numbering and captions ---
+\usepackage[authoryear,round]{natbib}
+\usepackage[labelsep=period]{caption}
+\numberwithin{table}{section}    % Table 2.1, Table 6.3, ...
+\numberwithin{figure}{section}   % Figure 2.1, ...
+\emergencystretch=3em            % helps long URLs wrap in the reference list
+
 % --- Hyperlinks (load last) ---
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+
+% Let long URLs in the reference list break at - . = and use the text font
+\urlstyle{same}
+\makeatletter\g@addto@macro\UrlBreaks{\do\-\do\.\do\=}\makeatother
 
 \newcommand{\projectname}{UVie -- Smart Sun-Tracker Patch \& UV Detector Assistant}
 
@@ -139,13 +150,40 @@
 % References and appendices (not counted in the 30--50 pages)
 %--------------------------------------------------------------------
 \clearpage
-\section*{References}
-\addcontentsline{toc}{section}{References}
+\renewcommand{\bibsection}{\section*{References}\addcontentsline{toc}{section}{References}}
 \begin{thebibliography}{00}
 
-% Add entries alphabetically by first author's initial, IEEE style, e.g.:
-% \bibitem{key} A.~Author, ``Title,'' \emph{Journal}, vol.~1, no.~1, pp.~1--10, 2026.
-\bibitem{todo} TODO: replace with the first reference and cite it in the text with \texttt{\textbackslash cite\{key\}}.
+% APA style, sorted alphabetically. Label format: [Short author(Year)Full author].
+% Cite in the text with \citet{key} -> Author (Year)  or  \citep{key} -> (Author, Year).
+
+\bibitem[AAD(2023)American Academy of Dermatology]{aad2023}
+American Academy of Dermatology [AAD]. (2023). \emph{Sunscreen FAQs}.
+\url{https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/sunscreen-faqs}
+
+\bibitem[IMARC Group(2026)]{imarc2026}
+IMARC Group. (2026). \emph{Sun Care Products Market Size, Share, Trends and Forecast, 2026--2034}
+(Report ID: SR112026A1439). \url{https://www.imarcgroup.com/sun-care-products-market}
+
+\bibitem[Markets and Data(2023)]{marketsdata2023}
+Markets and Data. (2023). \emph{Vietnam Sun Care Market Assessment, Opportunities, and Forecast, 2016--2030F}
+(Report ID: MX10260). \url{https://www.marketsandata.com/industry-reports/vietnam-sun-care-market}
+
+\bibitem[Porter(2018)]{porter2018}
+Porter, J. (2018, November 14). L'Or\'eal's wearable sensor will track your UV exposure throughout the day.
+\emph{The Verge}.
+\url{https://www.theverge.com/2018/11/14/18094903/loreal-uva-track-la-roche-posay-my-skin-uv-sensor-wearable-exposure-sun-uvb}
+
+\bibitem[SPOTMYUV(2024)]{spotmyuv2024}
+SPOTMYUV. (2024). \emph{SPOTMYUV UV Detection Stickers -- 16 Pack}.
+\url{https://spotmyuv.com/products/spotmyuv-uv-detection-stickers-16-pack}
+
+\bibitem[Statista(2024)]{statista2024}
+Statista. (2024). \emph{Sun Protection -- Vietnam | Statista Market Forecast}.
+\url{https://www.statista.com/outlook/cmo/beauty-personal-care/skin-care/sun-protection/vietnam}
+
+\bibitem[WHO(2022)World Health Organization]{who2022}
+World Health Organization [WHO]. (2022). \emph{Global solar UV index: A practical guide}.
+\url{https://www.who.int/publications/i/item/9241590016}
 
 \end{thebibliography}
 
