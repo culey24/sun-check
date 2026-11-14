@@ -1,5 +1,243 @@
-% Section 4 - Business Model
-\section{Business Model}
+% Section 4 - Business Model  (DRAFT for Thai Thuan to review)
+% Numbers in this section are taken from Section 6 (financial projection) and Section 2 (market size).
+% Frameworks follow the course slides (Business Model Canvas, Osterwalder and Pigneur).
+\section{Business Model}\label{sec:business-model}
 
-How the venture creates, delivers and captures value for its stakeholders
-(e.g.\ Business Model Canvas). TODO
+A business model describes how a company creates, delivers, and captures value.
+We use the Business Model Canvas \cite{osterwalder2010}, which breaks the model into
+nine connected blocks. This section first shows the whole canvas on one page, then
+explains the choices that matter most: who Uvie serves, what value it offers, how it
+earns money, and what could make the model fail.
+
+%====================================================================
+\subsection{Business Model Canvas}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      blk/.style={draw=black!55, fill=white, rounded corners=2pt, inner sep=3pt,
+                  text width=2.85cm, align=left, anchor=north west, font=\scriptsize},
+      hd/.style={font=\scriptsize\bfseries},
+      every node/.append style={outer sep=0pt}]
+    % column x origins (width 3.2 cm each), top y = 0
+    \def\w{3.2}
+    % Key Partners
+    \node[blk, minimum height=7.1cm] at (0*\w,0) {\textbf{Key Partners}\\[2pt]
+      $\bullet$ Pigment and substrate suppliers\\
+      $\bullet$ Packaging and printing\\
+      $\bullet$ Testing laboratory\\
+      $\bullet$ Shopee and TikTok Shop\\
+      $\bullet$ Pharmacy and beauty chains (Years 2--3)\\
+      $\bullet$ Campus clubs, sports groups, creators\\
+      $\bullet$ Web hosting provider};
+    % Key Activities
+    \node[blk, minimum height=3.5cm] at (1*\w,0) {\textbf{Key Activities}\\[2pt]
+      $\bullet$ Make and inspect patches\\
+      $\bullet$ Develop and maintain the web app\\
+      $\bullet$ Create educational content\\
+      $\bullet$ Fulfil orders, support users};
+    % Key Resources
+    \node[blk, minimum height=3.5cm] at (1*\w,-3.6) {\textbf{Key Resources}\\[2pt]
+      $\bullet$ Patch formulation know-how\\
+      $\bullet$ Web app and scan data\\
+      $\bullet$ Production and test equipment\\
+      $\bullet$ Team, brand};
+    % Value Propositions
+    \node[blk, minimum height=7.1cm] at (2*\w,0) {\textbf{Value Propositions}\\[2pt]
+      $\bullet$ Know when to reapply: the patch shows when sunscreen has stopped working\\
+      $\bullet$ A clear Protected or Reapply answer in seconds\\
+      $\bullet$ Low price (VND 89,000 per package)\\
+      $\bullet$ No extra device; free web app\\
+      $\bullet$ Works alongside any sunscreen};
+    % Customer Relationships
+    \node[blk, minimum height=3.5cm] at (3*\w,0) {\textbf{Customer}\\\textbf{Relationships}\\[2pt]
+      $\bullet$ Self-service app\\
+      $\bullet$ Social media community and tips\\
+      $\bullet$ Chat support\\
+      $\bullet$ Referral rewards};
+    % Channels
+    \node[blk, minimum height=3.5cm] at (3*\w,-3.6) {\textbf{Channels}\\[2pt]
+      $\bullet$ Web app (sun-check)\\
+      $\bullet$ TikTok Shop, Shopee, own social pages\\
+      $\bullet$ Pharmacies (Year 2)\\
+      $\bullet$ Beauty chains (Year 3)};
+    % Customer Segments
+    \node[blk, minimum height=7.1cm] at (4*\w,0) {\textbf{Customer}\\\textbf{Segments}\\[2pt]
+      $\bullet$ Core: urban students and young workers aged 18--35 who use sunscreen and a smartphone\\
+      $\bullet$ Early adopters: runners, cyclists, and other outdoor sports users\\
+      $\bullet$ Later: parents buying for teenage children};
+    % Cost Structure
+    \node[blk, minimum height=2.5cm, text width=7.45cm] at (0*\w,-7.3) {\textbf{Cost Structure}\\[2pt]
+      $\bullet$ Variable: materials, processing, packaging, inspection (VND 34,000 per package)\\
+      $\bullet$ Fixed: team, marketing, R\&D, legal and testing, app hosting and maintenance, depreciation};
+    % Revenue Streams
+    \node[blk, minimum height=2.5cm, text width=7.45cm] at (2.5*\w,-7.3) {\textbf{Revenue Streams}\\[2pt]
+      $\bullet$ Sale of patch packages at a list price of VND 89,000 (repeat purchase about three times a year)\\
+      $\bullet$ The scanning app is free and is not a revenue source in the forecast};
+  \end{tikzpicture}
+  \caption{Business Model Canvas of Uvie.}
+  \label{fig:bmc}
+\end{figure}
+
+%====================================================================
+\subsection{Customers and Value Proposition}
+
+\subsubsection{Customer Segments}
+The core segment is the same group sized in Section~\ref{sec:market-size}: urban
+adults aged 18 to 35 who already use sunscreen and own a smartphone, about 4.5
+million people in our estimate. We start with students and young workers because
+they are online daily, price-sensitive, and spend long hours outdoors commuting.
+Runners, cyclists, and other outdoor sports users form the first group of early
+adopters, since they sweat sunscreen off quickly and gain the most from a clear
+signal. Evidence from Australia shows that young people playing outdoor sport
+respond well to UV-detection stickers \cite{horsham2020}. Parents of teenagers are a
+possible later segment, but we do not include them in the forecast.
+
+\subsubsection{Value Proposition}
+A value proposition has to relieve a real pain, not just list features. Table~\ref{tab:vp}
+connects the pains found in Section~\ref{sec:market-opportunities} to what Uvie
+offers.
+
+\begin{table}[ht]
+\centering\small
+\caption{Customer pains and how Uvie responds}\label{tab:vp}
+\begin{tabular}{@{}L{4.4cm}L{5.4cm}L{4.4cm}@{}}
+  \toprule
+  \textbf{Customer pain} & \textbf{Uvie's response} & \textbf{Benefit to the user}\\
+  \midrule
+  UV cannot be seen or felt, so users misjudge protection & Patch darkens when UV reaches the skin & Visible proof that sunscreen has worn off\\
+  \addlinespace
+  Users forget to reapply & App scan gives an explicit ``Reapply sunscreen'' alert & A prompt at the right moment\\
+  \addlinespace
+  Existing sticker packs are expensive in Vietnam & Locally priced package at VND 89,000 & Affordable for students and regular use\\
+  \addlinespace
+  Extra gadgets are awkward and costly & Phone camera and free web app, nothing to install & No extra device to buy or carry\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+Uvie's main benefits are \emph{risk reduction} (fewer unnoticed burns),
+\emph{convenience} (an answer in a few seconds), and \emph{price}. We do not claim a
+medical benefit. The product is a reminder, and Section~\ref{sec:prototype} explains
+why it should not be presented as a measurement of UV dose.
+
+%====================================================================
+\subsection{Delivering and Capturing Value}
+
+\subsubsection{Channels and Customer Relationships}
+Customers first meet Uvie online. Short videos and creator reviews on TikTok lead
+to a purchase on TikTok Shop or Shopee, where most of Vietnam's online retail
+already takes place \cite{krasia2026}. The web app is both a product feature and a
+sales channel: anyone can open it, try the demo mode, and understand the idea before
+buying. In Year 2 we add pharmacies, and in Year 3 nationwide beauty chains, so
+that customers who prefer to buy in person can also find the product. Details of
+the sales plan are in Section~\ref{sec:marketing}.
+
+Relationships are mostly self-service and community-based. The app guides use,
+social media supplies tips and daily UV advice, and referral rewards turn happy
+users into the cheapest acquisition channel, which is why Section~\ref{sec:financial}
+assumes a falling acquisition cost.
+
+\subsubsection{Revenue Model and Unit Economics}
+Uvie sells patch packages. The app stays free so that nothing stops a customer from
+trying it, which supports repeat purchases of patches. Table~\ref{tab:unit} shows the
+unit economics used throughout this report.
+
+\begin{table}[ht]
+\centering\small
+\caption{Unit economics per package (base case, from Section~\ref{sec:financial})}\label{tab:unit}
+\begin{tabular}{@{}L{7.2cm}r@{}}
+  \toprule
+  \textbf{Item} & \textbf{VND}\\
+  \midrule
+  Retail price & 89,000\\
+  Direct cost (materials, processing, packaging, inspection) & 34,000\\
+  Gross profit per package & 55,000\\
+  Gross margin & 61.8\%\\
+  Purchases per customer per year (assumption) & 3\\
+  Customer lifetime (assumption) & 2 years\\
+  Customer lifetime value (55,000 $\times$ 3 $\times$ 2) & 330,000\\
+  Customer acquisition cost, Year 1 $\to$ Year 3 & 30,000 $\to$ 16,667\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+Two things stand out. The price is low in absolute terms but leaves a margin high
+enough to pay for marketing, and the model depends heavily on repeat purchase:
+a customer who buys once returns only VND 55,000 of gross profit against an
+acquisition cost of VND 30,000 in Year 1. Repeat purchase is therefore the number to
+watch.
+
+\paragraph{Other ways to earn.} Several extensions are possible, such as paid
+premium features in the app, bulk supply to sports events, schools, and gyms, or
+co-branded patches with sunscreen makers. We list them as options for later and
+\emph{exclude them from the forecast}, in line with the conservative approach of
+Section~\ref{sec:financial}.
+
+\subsubsection{Cost Structure}
+Uvie is a cost-conscious model. Variable cost is mainly materials and processing at
+VND 34,000 per package, which gives a Year 1 cost of goods sold of VND 612 million.
+Fixed costs are mostly people and marketing. In the base case operating expenses
+before depreciation are VND 1,320 million in Year 1 and rise to VND 2,860 million in
+Year 3, while revenue grows from VND 1,602 million to VND 8,900 million. The initial
+funding requirement is VND 900 million. Full tables are in Section~\ref{sec:financial}.
+
+%====================================================================
+\subsection{Key Resources, Activities, and Partners}
+The resources that matter most are intangible: the patch formulation, the scan app,
+and the data and know-how gathered from testing. Production and testing equipment is
+the main physical asset. The key activities that Uvie keeps in-house are making and
+checking patches, because quality drives trust, and developing the app. Activities
+such as logistics, payment handling, and web hosting are left to partners.
+
+Table~\ref{tab:partners} lists the main partners and why each one matters.
+
+\begin{table}[ht]
+\centering\small
+\caption{Key partners and the reason for each partnership}\label{tab:partners}
+\begin{tabular}{@{}L{4.4cm}L{5.6cm}L{4.2cm}@{}}
+  \toprule
+  \textbf{Partner} & \textbf{What they provide} & \textbf{Motivation}\\
+  \midrule
+  Pigment and substrate suppliers & Photochromic pigment, hydrocolloid or silicone base & Acquire specific resources\\
+  \addlinespace
+  Testing laboratory & Skin-contact safety and UV response tests & Reduce risk and uncertainty\\
+  \addlinespace
+  Shopee and TikTok Shop & Online storefronts, payment, delivery & Economy of scale\\
+  \addlinespace
+  Pharmacy and beauty chains & Shelf space and in-person trust (Years 2--3) & Reach and credibility\\
+  \addlinespace
+  Campus clubs, sports groups, creators & Trial users and reviews & Low-cost awareness\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+%====================================================================
+\subsection{Risks to the Business Model}
+A business model is a set of assumptions. Table~\ref{tab:bm-risk} names the ones
+that, if wrong, would hurt Uvie most, together with how we plan to find out and what
+to do about it.
+
+\begin{table}[ht]
+\centering\small
+\caption{Key assumptions and risks of the business model}\label{tab:bm-risk}
+\begin{tabular}{@{}L{3.5cm}L{5.4cm}L{5.3cm}@{}}
+  \toprule
+  \textbf{Risk} & \textbf{Why it matters} & \textbf{Response}\\
+  \midrule
+  The patch does not track sunscreen wear-off reliably & Laboratory work shows photochromic devices can react quickly even under SPF 50+ at high UV \cite{aguilera2024}; unreliable signals would destroy trust & Test our patches under Vietnamese UV levels and with several SPF values; present Uvie as a reminder, not a dosimeter\\
+  \addlinespace
+  Low repeat purchase & LTV depends on three packages per year & Track cohorts early; add bundles and refill reminders\\
+  \addlinespace
+  Regulatory classification is unclear & A skin-contact product may need notification or testing; cosmetics, for example, must be notified to the health authority before sale \cite{circular06,mondaq2025} & Confirm the category with a legal adviser before launch; budget is in the legal and testing line\\
+  \addlinespace
+  Platform dependence & Most online sales run through two marketplaces \cite{krasia2026} & Build an owned audience through the app and social pages\\
+  \addlinespace
+  Intellectual property & The commercial sticker we benchmark is linked to a published patent application on its photochromic molecule \cite{horsham2020}, and Uvie's own mechanism is not protected & Check freedom to operate before launch; consider protecting our formulation; build brand trust\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\emph{Whether Uvie's product falls under cosmetic rules or another category
+has not been decided; the legal references above are a starting point and not legal
+advice.}

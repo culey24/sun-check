@@ -1,8 +1,264 @@
-% Section 3 - Designing a Prototype / MVP
+% Section 3 - Designing a Prototype / MVP  (DRAFT for To Quoc Tai and Diec Tuan Chi to review)
+% Facts about the app come from the repository (docs/SPEC.md, src/lib/analyzeSticker.ts).
+% Lines marked TODO need information only the team has (photos, test results).
 \section{Designing a Prototype / MVP}\label{sec:prototype}
 
+%====================================================================
 \subsection{Prototype / MVP Demonstration}
-Physical or digital. The Uvie web app source code lives in the repository root. TODO
 
-\subsection{Design and Development Process}
-TODO
+\subsubsection{What the MVP Is}
+Uvie's minimum viable product has two parts that work together. The first is a
+UV-sensitive photochromic patch that stays light while sunscreen blocks UV and
+turns dark once UV reaches it. The second is a web app that reads the patch color
+through the phone camera and tells the user whether to reapply sunscreen. The MVP
+is deliberately small: it tests the one idea the whole venture depends on, namely
+that a person can look at a patch, scan it, and get a clear ``reapply'' signal.
+
+The web app is live at \href{https://sun-check.onrender.com}{sun-check.onrender.com}
+and its source code is in the project repository. It is built with React, Vite,
+TypeScript, and Tailwind CSS, and it is hosted as a static site, so it needs no
+server and no installation. Camera access requires HTTPS, which the hosting
+provider supplies by default.
+
+\subsubsection{Digital Prototype: The Uvie Web App}
+The app has four screens that follow the user's natural order of actions
+(Figure~\ref{fig:flow}).
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      scr/.style={draw=black!60, rounded corners=4pt, minimum width=2.9cm, minimum height=3.5cm,
+                  align=center, font=\scriptsize, fill=white, inner sep=3pt},
+      ttl/.style={font=\scriptsize\bfseries},
+      chip/.style={rounded corners=3pt, minimum width=2.2cm, minimum height=0.55cm,
+                   font=\tiny\bfseries, text=white, inner sep=2pt},
+      >=Stealth]
+    \node[scr] (home) {};
+    \node[ttl] at ([yshift=-0.3cm]home.north) {1. Home};
+    \node[font=\scriptsize, text width=2.5cm, align=center] at ([yshift=0.25cm]home.center)
+      {Value proposition\\and ``How it works''};
+    \node[chip, fill=blue!60!cyan!80] at ([yshift=0.85cm]home.south) {Scan sticker};
+
+    \node[scr, right=0.75cm of home] (scan) {};
+    \node[ttl] at ([yshift=-0.3cm]scan.north) {2. Scan};
+    \draw[black!55, thick, dashed] ([yshift=0.1cm]scan.center) circle (0.8cm);
+    \node[font=\tiny, text=black!70, align=center] at ([yshift=0.1cm]scan.center) {sticker\\guide};
+    \node[chip, fill=blue!60!cyan!80] at ([yshift=0.85cm]scan.south) {Capture};
+
+    \node[scr, right=0.75cm of scan] (res) {};
+    \node[ttl] at ([yshift=-0.3cm]res.north) {3. Result};
+    \node[chip, fill=red!70!black] at ([yshift=0.35cm]res.center) {Reapply sunscreen};
+    \node[font=\tiny, text width=2.5cm, align=center] at ([yshift=-0.35cm]res.center)
+      {sampled color,\\confidence, alert};
+    \node[chip, fill=green!50!black] at ([yshift=0.85cm]res.south) {Protected};
+
+    \node[scr, right=0.75cm of res] (hist) {};
+    \node[ttl] at ([yshift=-0.3cm]hist.north) {4. History};
+    \node[font=\tiny, text width=2.5cm, align=left] at ([yshift=0cm]hist.center)
+      {10:05 \ Protected\\11:42 \ Reapply\\13:20 \ Protected\\\ldots};
+
+    \draw[->, thick] (home) -- (scan);
+    \draw[->, thick] (scan) -- (res);
+    \draw[->, thick] (res) -- (hist);
+  \end{tikzpicture}
+  \caption{User flow of the Uvie MVP (schematic drawn by the team; the Result screen
+  shows both outcomes, ``Reapply sunscreen'' and ``Protected'').}
+  \label{fig:flow}
+\end{figure}
+
+% TODO (Tai / Chi): replace or complement Figure 3.1 with real screenshots of the four screens.
+
+Table~\ref{tab:mvp-features} lists the functional requirements from the product
+specification and shows how each one is met in the current build.
+
+\begin{table}[ht]
+\centering\small
+\caption{MVP functional requirements and their implementation}\label{tab:mvp-features}
+\begin{tabular}{@{}L{1.2cm}L{5.8cm}L{7.6cm}@{}}
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{How the MVP delivers it}\\
+  \midrule
+  FR-1 & Open the camera and show a live preview & Scan screen, using the browser camera interface, with a circular guide for aligning the patch\\
+  \addlinespace
+  FR-2 & Capture a frame and submit it for analysis & The Capture button turns the video frame into an image and passes it to the analyzer\\
+  \addlinespace
+  FR-3 & Classify the patch as \emph{Protected} or \emph{Reapply} & Brightness-based classification, explained below\\
+  \addlinespace
+  FR-4 & Show a clear alert when the state is \emph{Reapply} & Result screen shows a prominent ``Reapply your sunscreen now'' banner, a status badge, the sampled color, and a confidence value\\
+  \addlinespace
+  FR-5 & Keep a basic local history of scans & History screen, stored in the browser only\\
+  \addlinespace
+  FR-6 & Work with mock data when no camera is available & ``Demo: light'' and ``Demo: dark'' buttons run the same analysis on a synthetic frame\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{How the classification works.}
+The app takes the central 40\% of the captured image, which is where the on-screen
+guide asks the user to place the patch, and averages its pixels. It converts the
+average color to a luminance value between 0 (black) and 255 (white) using the
+standard weights for red, green, and blue (0.2126, 0.7152, and 0.0722). A luminance
+below 120 is treated as a dark patch, so the app reports \emph{Reapply}; anything
+else is reported as \emph{Protected}. The confidence value starts at 60\% right at
+the threshold and rises linearly to a cap of 98\% once the luminance is 60 or more
+units away from it (Figure~\ref{fig:confidence}). Because of this, a patch that sits
+close to the threshold produces a low-confidence result rather than a false sense
+of certainty.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig3-2_classification_confidence.png}
+  \caption{Classification rule and confidence value used by the MVP (drawn from the
+  rule in the app's source code; the threshold of 120 is a first estimate and has not
+  yet been tuned on real patches).}
+  \label{fig:confidence}
+\end{figure}
+
+\paragraph{Privacy by design.} The analysis runs entirely in the user's browser.
+Captured frames are not uploaded, and the scan history is stored only in the
+browser's local storage. This keeps the MVP simple and avoids collecting images of
+users' skin, which is a sensitive issue for a product worn on the body.
+
+\subsubsection{Physical Prototype: The UV-Sensitive Patch}
+The physical prototype is a small round sticker made in three steps, described in
+the product specification:
+\begin{enumerate}[itemsep=0pt]
+  \item \textbf{Mix.} Blend photochromic pigment into a medical solvent to form a
+    thick ink.
+  \item \textbf{Coat.} Spread a very thin, even layer of ink on the non-sticky face
+    of a hydrocolloid patch or transparent medical tape.
+  \item \textbf{Dry and cut.} Dry the coated sheet away from sunlight, since
+    daylight would activate the pigment early, then punch out small circles.
+\end{enumerate}
+The simple bench test is to stick a patch on the back of the hand and apply
+sunscreen over it. In sunlight or under a UV lamp, the patch should stay light
+while the sunscreen holds. Wiping the sunscreen off with a wet cloth, to imitate
+sweat, should make the patch turn dark immediately.
+
+% TODO (Tai / Chi): add photos of the prototype patches (light state, dark state, on skin).
+
+\subsubsection{Why This Mechanism Is Credible}
+Uvie did not invent the principle. A series of field studies in Australia tested
+commercial UV-detection stickers that work in the same way. In one study with
+adolescent rugby players, handing out stickers was linked to more than three times
+as much sunscreen being used on the second event day compared with the first
+\cite{horsham2020}. An earlier study by the same group found that stickers helped
+adults reapply sunscreen at an outdoor event \cite{hacker2019}. These results come
+from sports events in Australia and from a different sticker product, so they
+support the idea but are not proof that Uvie's patch will work in Vietnam.
+
+\subsection{Documentation of the Design and Development Process}
+
+\subsubsection{Design Approach}
+The team followed the Lean Startup sequence taught in the course
+\cite{olsen2015}: determine the target customers, identify underserved needs,
+define the value proposition, specify the MVP feature set, create the prototype,
+and test it with customers. Table~\ref{tab:lean} shows what was done at each step
+and where the evidence is in this report.
+
+\begin{table}[ht]
+\centering\small
+\caption{Development of the MVP following the Lean Startup steps}\label{tab:lean}
+\begin{tabular}{@{}L{3.4cm}L{7.4cm}L{3.3cm}@{}}
+  \toprule
+  \textbf{Step} & \textbf{What the team did} & \textbf{Where to look}\\
+  \midrule
+  1. Target customers & Young urban adults aged 18--35 who already use sunscreen and smartphones & Sections~\ref{sec:market-opportunities}, \ref{sec:market-size}\\
+  \addlinespace
+  2. Underserved needs & People know the reapplication rule but forget, and cannot see when protection ends & Section~\ref{sec:market-opportunities}\\
+  \addlinespace
+  3. Value proposition & A clear, low-cost signal for when to reapply, with no extra device & Section~\ref{sec:business-model}\\
+  \addlinespace
+  4. MVP feature set & Scan, read the patch state, alert, and keep a short history; everything else deferred & Table~\ref{tab:mvp-features}, Table~\ref{tab:scope}\\
+  \addlinespace
+  5. Prototype & Web app and hand-made patch & Section~\ref{sec:prototype}\\
+  \addlinespace
+  6. Test with customers & Bench tests done first; customer tests planned & Table~\ref{tab:tests}\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Scoping Decisions}
+A small first version forced the team to decide what to leave out. Table~\ref{tab:scope}
+records those decisions and the reason for each.
+
+\begin{table}[ht]
+\centering\small
+\caption{MVP scope: what is in and what is deferred}\label{tab:scope}
+\begin{tabular}{@{}L{4.6cm}L{2.6cm}L{6.9cm}@{}}
+  \toprule
+  \textbf{Capability} & \textbf{Status} & \textbf{Reason}\\
+  \midrule
+  Camera scan and Protected/Reapply result & In MVP & Core of the value proposition\\
+  Local scan history & In MVP & Lets users and testers see the pattern over a day\\
+  Demo mode without a camera & In MVP & Makes the product demonstrable anywhere, including during evaluation\\
+  Real photochromic color analysis & Deferred & Needs real patches and test data to set reliable thresholds\\
+  Push notifications and reminder scheduling & Deferred & A browser app cannot rely on background alerts; needs a design decision\\
+  User accounts and cloud sync & Deferred & Not needed to prove the core idea; adds privacy obligations\\
+  Native mobile apps & Deferred & The web app already runs on any phone browser\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Development Process}
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{Specification first.} The team wrote a product specification and a
+    short brand guideline before coding. The guideline sets a calm, direct tone,
+    a blue brand color kept separate from the green, amber, and red status colors,
+    and a rule that every status color must come with an icon and a text label, so
+    that the result never depends on color alone.
+  \item \textbf{UI-first build.} The interface was built first with mock analysis so
+    that all screens could be navigated and demonstrated before any image processing
+    existed. The current build already replaces the mock with the simple brightness
+    rule described above.
+  \item \textbf{Mobile first.} Layouts are designed for phones, with large tap
+    targets, because scanning happens outdoors with one hand.
+  \item \textbf{Static deployment.} The app is published as a static site and is
+    redeployed automatically each time new code is pushed to the main branch.
+\end{itemize}
+
+\subsubsection{Testing Plan and Status}
+Table~\ref{tab:tests} lists the tests the team has run or still needs to run. We
+list the unfinished ones openly because the MVP has not yet been validated on real
+patches.
+
+\begin{table}[ht]
+\centering\small
+\caption{Testing plan and status}\label{tab:tests}
+\begin{tabular}{@{}L{3.4cm}L{6.0cm}L{2.0cm}L{2.5cm}@{}}
+  \toprule
+  \textbf{Test} & \textbf{Method} & \textbf{Status} & \textbf{Result}\\
+  \midrule
+  App flow & Walk through Home, Scan, Result, and History using demo light and dark frames & Done & TODO\\
+  \addlinespace
+  Patch bench test & Sunscreen on the patch, then UV lamp or sunlight, then wipe off & Planned & TODO\\
+  \addlinespace
+  Threshold tuning & Photograph light and dark patches indoors, in shade, and in direct sun, then compare the luminance values & Planned & TODO\\
+  \addlinespace
+  Sunscreen types and SPF & Repeat the bench test with several SPF levels and sweat or water exposure & Planned & TODO\\
+  \addlinespace
+  User test & Give patches to a small group of students to use for one outdoor day, then ask about clarity and trust & Planned & TODO\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Known Limitations and Next Steps}
+We want to be clear about the weaknesses of the current prototype.
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{The classifier is a heuristic.} It looks only at average brightness,
+    so strong glare, shadows, or a dim room can change the reading. A possible
+    improvement, still to be tested, is to print a reference color beside the
+    patch so that lighting affects both in the same way.
+  \item \textbf{Photochromic indicators have limits.} A laboratory study of ten
+    commercial photochromic devices found that they changed color within about a
+    minute even under SPF 50+ sunscreen at a UV index of 10, and that their color
+    saturated at moderate UV levels. The authors concluded that such devices can
+    raise awareness but are of limited use for measuring UV dose \cite{aguilera2024}.
+    Uvie should therefore be described as a reminder tool and not as a measurement
+    device, and our own patches need to be tested under Vietnamese UV conditions,
+    which are often above index 9 (Figure~\ref{fig:uv-vietnam}).
+  \item \textbf{No reminder scheduling yet.} The app answers only when a user scans.
+    Timed reminders and notifications are on the roadmap.
+\end{itemize}
+The roadmap has four phases: a UI with mock analysis (done), real color sampling and
+classification, reminder scheduling, and finally accounts and analytics.

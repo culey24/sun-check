@@ -1,0 +1,53 @@
+# Ghi chú review — bản nháp Section 1, 3, 4, 5 (cập nhật 2026-11-15)
+
+Bản nháp do Claude viết để từng người phụ trách đọc lại và **viết lại bằng giọng của mình**.
+Theo quy định môn học, phần dùng AI phải khai báo trong Appendix A (xem mục 5).
+
+Hiện tại: PDF 43 trang; phần nội dung chính (Section 1–6) nằm ở trang 6–39 (~34 trang, nằm trong khoảng 30–50 của yêu cầu).
+
+## 1. Tình trạng từng section
+
+| Section | Người phụ trách | Tình trạng |
+| --- | --- | --- |
+| 1 Market Opportunities | Lý Triều Phong | Nháp đủ 1.1 và 1.2, 2 biểu đồ, 1 sơ đồ, 1 bảng |
+| 2 Evaluating the Market | Hoàng Hà | Đã có từ trước (chưa đổi, chỉ thêm 2 `\label`) |
+| 3 Prototype / MVP | Tô Quốc Tài, Diệc Tuấn Chí | Nháp đủ, **cần ảnh và kết quả test thật** |
+| 4 Business Model | Thái Thuận | Nháp đủ (canvas, value proposition, unit economics, rủi ro) |
+| 5 Marketing / Sales | Nguyễn Lương Quốc Thịnh | Nháp đủ (STP, 4P, funnel, CAC, KPI) |
+| 6 Financial | Phan Vũ Minh Thy | Đã có từ trước, không sửa |
+
+## 2. Việc cần người của nhóm điền (TODO trong bài)
+
+- **Bìa:** `INSTRUCTOR`, `CLASS`, `GROUP` trong `main.tex` vẫn là `TODO`.
+- **Section 3:** ảnh chụp màn hình 4 trang của app (Hình 3.1 hiện là sơ đồ minh họa), ảnh patch thật (sáng, tối, trên da), cột **Result** của Bảng 3.5 (các bài test).
+- **Số miếng patch trong mỗi gói chưa chốt** (Section 2 và 6 cũng ghi như vậy). Section 5 có nhắc "to be fixed after supplier tests".
+- **Section 5:** conversion rate, repeat-purchase rate, scan frequency, mức ưu đãi (starter offer, bundle, referral) đang để "to be set" vì chưa có số liệu. Mình không tự bịa số.
+- **Section 5/6:** chưa có bảng chia ngân sách marketing theo kênh (TikTok, Shopee, KOL, sự kiện). Chỉ có tổng 360 / 600 / 1.000 triệu VND từ Section 6.
+
+## 3. Điểm cần xem xét kỹ (ảnh hưởng đến độ chính xác của báo cáo)
+
+1. **LTV và sản lượng chưa khớp (Section 6).** LTV giả định 3 gói/năm × 2 năm = 330.000 VND. Nhưng sản lượng dự báo (18.000 / 50.000 / 100.000 gói) trên số khách mới (12.000 / 30.000 / 60.000) chỉ tương ứng khoảng 1,5–1,7 gói mỗi khách mới. Nếu khách cũ mua 3 gói/năm thì sản lượng năm 2–3 phải cao hơn nhiều. Cần nhóm Section 6 thống nhất lại (hoặc giảm LTV, hoặc tăng sản lượng). Trong Section 5 mình để một comment `%` ở đầu file, chưa đưa vào văn bản.
+2. **Hạn chế của cảm biến photochromic.** Aguilera et al. (2024) test 10 thiết bị thương mại: màu đổi trong khoảng 1 phút kể cả khi có kem SPF 50+ ở UV index 10, và bão hòa từ UV index > 3. Kết luận của họ: chỉ phù hợp để nâng cao nhận thức, không đo được liều UV. Vì UV ở Việt Nam thường > 9 (Hình 1.1), đây là rủi ro lớn nhất của sản phẩm. Mình đã ghi thẳng điều này ở Section 3 (Known Limitations) và Section 4 (bảng rủi ro), và định vị Uvie là **công cụ nhắc nhở**, không phải thiết bị đo. Nhóm nên test thật trước khi tuyên bố bất cứ điều gì về độ chính xác.
+3. **Bằng sáng chế.** Sản phẩm sticker mà nhóm dùng làm đối chứng (SPOTMYUV) gắn với đơn sáng chế WO2018035514 về phân tử photochromic (theo Horsham et al. 2020). Nhóm nên kiểm tra freedom-to-operate (đã ghi trong bảng rủi ro Section 4).
+4. **Phân loại pháp lý chưa rõ.** Mình chỉ dẫn Thông tư 06/2011/TT-BYT (mỹ phẩm, sửa đổi bởi Thông tư 34/2025/TT-BYT) như điểm khởi đầu. Chưa biết patch có thuộc mỹ phẩm hay loại khác. Bài đã ghi rõ "không phải tư vấn pháp lý".
+5. **Thuật ngữ:** repo và SPEC dùng "sticker", Section 1/6 dùng "patch"; Section 6 viết "mobile application" nhưng sản phẩm thực tế là **web app** (sun-check.onrender.com). Nên thống nhất.
+6. **Section 6 (đã báo từ trước):** CAGR của IMARC 5,21% so với ≈5,4% tính lại; phần tăng vốn lưu động trong FCFF (100/150/200) khác với thay đổi hàng tồn kho + phải thu trên bảng cân đối (130/220/350).
+7. **Bằng chứng hành vi bôi lại kem chủ yếu từ Mỹ và New Zealand**, chưa có khảo sát Việt Nam. Nên làm khảo sát nhỏ (Google Form) cho sinh viên; kết quả có thể đưa vào Appendix B.
+
+## 4. Nguồn đã dùng và chỗ cần kiểm tra lại
+
+Mình dùng tìm kiếm web; một số trang (PMC, KrASIA, Q&Me, các trang luật) không đọc được toàn văn nên số liệu lấy từ phần trích/abstract. **Mỗi người hãy mở lại nguồn của mình để xác nhận số liệu trước khi nộp:**
+
+- Section 3: Horsham et al. 2020 (>3 lần lượng kem chống nắng dùng, 19% → 81% theo thông cáo của QUT; bài ghi ">3-fold"), Hacker et al. 2019, Aguilera et al. 2024.
+- Section 4: KrASIA 2026 (Shopee 56,04%, TikTok Shop 41,31%, hai sàn chiếm 97% GMV), Osterwalder & Pigneur 2010, Thông tư 06/2011 và 34/2025.
+- Section 5: Q&Me Vietnam Mobile App Usage Trends 2026 (82% dùng TikTok trong 7 ngày), DataReportal Digital 2026, Kotler et al. 2017 (5A), Moore 2014, Aulet 2017.
+- Sách giáo trình (Olsen 2015, Osterwalder 2010, Kotler 2017, Aulet 2017, Moore 2014) lấy theo slide môn học, chưa đối chiếu lại với sách.
+- Số liệu tính trong bài (đều lấy từ Section 6): CAC = 360/12.000 = 30.000; 600/30.000 = 20.000; 1.000/60.000 = 16.667; ngân sách/doanh thu = 22,5% / 13,5% / 11,2%; LTV/CAC năm 1 = 11,0; chỉ mua 1 lần thì 55.000/30.000 ≈ 1,8.
+
+## 5. Khai báo AI (Appendix A)
+
+Appendix A hiện chỉ có dòng của Hoàng Hà (Section 2). Cần thêm dòng cho Section 1, 3, 4, 5 với đúng tên người phụ trách, công cụ (Claude), và việc đã làm: *tìm nguồn, soạn nháp, tạo biểu đồ, kiểm tra LaTeX*. Nếu người phụ trách viết lại phần lớn thì ghi đúng mức độ chỉnh sửa. Quy định môn học: bài không được do AI tạo ra toàn bộ hoặc phần lớn.
+
+## 6. Gợi ý nhỏ cho Section 1
+
+Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng kem chống nắng dùng ở vận động viên trẻ) vào mục 1.2 làm bằng chứng cho lý do 2; hiện tại nguồn này mới xuất hiện ở Section 3.
