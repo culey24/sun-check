@@ -5,7 +5,12 @@
 
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Termes}   % Times-like font with full Vietnamese support
+% Main font: first available of Times New Roman, TeX Gyre Termes, Liberation Serif,
+% then Latin Modern Roman (always installed with TeX Live). All support Vietnamese.
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{%
+\IfFontExistsTF{TeX Gyre Termes}{\setmainfont{TeX Gyre Termes}}{%
+\IfFontExistsTF{Liberation Serif}{\setmainfont{Liberation Serif}}{%
+\setmainfont{Latin Modern Roman}}}}
 \usepackage{setspace}
 \onehalfspacing                  % 1.5 line spacing (required)
 \usepackage{amsmath}
