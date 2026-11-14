@@ -1,12 +1,24 @@
-% !TEX program = pdflatex
+% !TEX program = xelatex
 % IM1031 - Entrepreneurship and Innovation - Group project report
-% Compile: latexmk -pdf main.tex   (or just press Recompile on Overleaf)
+% Compile: latexmk main.tex   (.latexmkrc selects XeLaTeX; Overleaf: Menu > Compiler > XeLaTeX)
 % Logo: put the HCMUT logo at tex/assets/hcmut.png (optional while drafting).
 \documentclass[12pt,a4paper]{article}
 
-% --- Encoding & fonts (T5 = Vietnamese-capable, works with pdflatex) ---
-\IfFileExists{t5enc.def}{\usepackage[T5]{fontenc}}{\usepackage[T1]{fontenc}} % T1 fallback if vntex is missing
-\usepackage{lmodern}
+% --- Encoding & fonts (Vietnamese-capable) ---
+% XeLaTeX/LuaLaTeX (default, set in .latexmkrc): Unicode + Latin Modern, nothing else to install.
+% pdfLaTeX: needs the T5 encoding (package vntex); stops with a clear message if it is missing.
+\usepackage{iftex}
+\ifPDFTeX
+  \IfFileExists{t5enc.def}{%
+    \usepackage[T5]{fontenc}%
+    \usepackage{lmodern}%
+  }{%
+    \PackageError{main}{T5 encoding (t5enc.def) not found}{%
+      Install the vntex package, or compile with XeLaTeX / LuaLaTeX (latexmk main.tex does this).}%
+  }
+\else
+  \usepackage{fontspec}   % default font is Latin Modern, same look as lmodern
+\fi
 
 % --- Page geometry, spacing, headers/footers ---
 \usepackage[margin=2.5cm,headheight=30pt]{geometry}
