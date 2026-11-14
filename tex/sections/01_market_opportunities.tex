@@ -1,8 +1,210 @@
-% Section 1 - Identifying Market Opportunities
-\section{Identifying Market Opportunities}
+% Section 1 - Identifying Market Opportunities  (DRAFT written for Ly Trieu Phong to review and rewrite)
+% Citations: \cite{key} -> [n]; entries are in the References list in main.tex.
+\section{Identifying Market Opportunities}\label{sec:market-opportunities}
 
+%====================================================================
 \subsection{Market Research Report}
-Customer needs, pain points and potential demand. TODO
 
+\subsubsection{Research Scope and Approach}
+This section asks one question: is there a real, unmet need that a UV-sensitive
+patch paired with a phone app can address? To answer it, we drew on health
+authorities (WHO and the American Academy of Dermatology), Vietnamese weather and
+news agencies, consumer surveys, and market data providers. Our target customers
+are young urban adults aged 18 to 35 who already use sunscreen and carry a
+smartphone, the same group used to size the market in
+Section~\ref{sec:market-evaluation}.
+
+One limitation should be stated up front. We found good data on how often people
+reapply sunscreen in the United States and New Zealand, but no published survey of
+reapplication habits in Vietnam. We therefore treat those studies as indicative
+and combine them with Vietnamese data on UV levels, sunscreen use, and smartphone
+ownership. Confirming the behavior with Vietnamese users is a next step for the
+team.
+
+\subsubsection{Strong but Invisible UV Exposure}
+Ultraviolet radiation can neither be seen nor felt, yet it is the main cause of
+skin cancer and also leads to sunburn, DNA damage, and premature skin aging.
+According to the WHO, more than 1.5 million skin cancer cases were diagnosed and
+over 120,000 skin cancer deaths were reported worldwide in 2020 \cite{whofact}.
+
+Vietnam sits in the tropics, so the exposure is high for most of the year. On
+24 May 2023, the national forecasting center reported midday UV index values of
+9.1 in Ho Chi Minh City and between 9.1 and 10 in Ha Long, Hai Phong, Hue, Hoi An,
+and Nha Trang, while Hanoi stayed at the ``high'' level of 5.5 to 7.4
+\cite{vna2023} (Figure~\ref{fig:uv-vietnam}). In Vietnamese reporting, a ``very
+high'' reading of 7.5 to 10.4 can cause sunburn after about 25 minutes of
+unprotected exposure, and readings of 10.5 or more after about 15 minutes
+\cite{vietnamnet}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1-1_uv_index_vietnam_cities.png}
+  \caption{UV index at the midday peak in six Vietnamese cities on 24 May 2023
+  (Source: \cite{vna2023}). Hanoi was reported separately at the ``high'' level
+  (5.5--7.4). Category bands follow \cite{vietnamnet}.}
+  \label{fig:uv-vietnam}
+\end{figure}
+
+An honest reading of the health data also needs one caveat. Skin cancer is
+relatively uncommon in Vietnam: the IARC estimated only 157 new melanoma cases in
+2018 \cite{nguyen2020}. For most young Vietnamese users, the everyday motivation
+is therefore not fear of cancer alone, but protecting the look of their skin.
+Surveys of Vietnamese consumers show that the main worry about sun exposure is
+skin damage, and that people aged 25 and over also worry about wrinkles and aged
+skin \cite{qandmetan}.
+
+\subsubsection{Customer Needs and Behavior}
+Sun protection is already part of daily life for many Vietnamese consumers,
+especially women. In a 2026 online survey of 200 residents of Hanoi and Ho Chi
+Minh City aged 20 to 49, 76\% of women said they apply sunscreen, compared with
+45\% of men, and use was higher among high-income respondents (70\%) than
+low-income ones (52\%) \cite{qandme2026}. A study of 590 patients at the National
+Hospital of Dermatology in Hanoi found a similar split, with 75.7\% of women and
+13.0\% of men using sunscreen (42.6\% overall) \cite{nguyen2020}. That sample
+consists of hospital patients, so it should not be read as the general population.
+Awareness is not the problem either: in an earlier Q\&Me survey of 500 Vietnamese
+adults, 88\% knew about UV and 84\% said they cared about it \cite{qandme2014}.
+
+Putting this together, our target customers do not need another sunscreen. They
+need to know when the sunscreen on their skin has stopped doing its job. In
+practice this means three needs:
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{Feedback:} a clear signal for whether protection is still working.
+  \item \textbf{Convenience:} a solution that adds almost no effort to a daily
+    routine of studying, commuting, or exercising outdoors.
+  \item \textbf{Affordability:} a price that students can pay for regular use.
+\end{itemize}
+
+\subsubsection{Pain Points}
+\textbf{UV gives no warning.} Because UV is invisible, people often use the wrong
+signals. In a US survey of regular sunscreen users, 45\% of parents said they use
+``redness'' as the cue to reapply on their children \cite{fct2023}, which means
+the skin is already damaged by the time they act.
+
+\textbf{People know the rule but do not follow it.} The AAD recommends reapplying
+sunscreen every two hours and after swimming or sweating \cite{aad2023}. In an AAD
+survey of 1,000 US adults, 80\% knew this, yet only 33\% typically reapplied
+every two hours, 42\% either did not reapply at all or only when they got wet, and
+30\% applied sunscreen only to the face \cite{aad2021}. A nationally
+representative survey in New Zealand found that just 13\% reapply every two hours
+and 9\% never do; among the reasons for not always reapplying, nearly half (45\%)
+said they simply forget \cite{castles2023} (Figure~\ref{fig:forget}). A
+peer-reviewed study of 2,283 regular sunscreen users in the United States
+likewise found that between 20\% and 60\% do not reapply, depending on the product
+type \cite{fct2023}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1-2_reasons_not_reapplying.png}
+  \caption{Reasons given for not always reapplying sunscreen, New Zealand adults,
+  2023 (n = 1,000; Source: \cite{castles2023}). Percentages add up to more than
+  100\% because respondents could give more than one reason.}
+  \label{fig:forget}
+\end{figure}
+
+\textbf{Everyday life makes a two-hour rule hard to follow.} Students in class,
+commuters on motorbikes, and runners on the road are unlikely to track the time
+since their last application, so a fixed schedule is easy to forget.
+
+\textbf{Existing tools do not close the gap.} As Section~\ref{sec:competitors}
+shows, the closest sticker product costs around VND 415,000 per 16-pack and has no
+phone app, a hardware UV clip-on was discontinued because of its price, and free
+UV apps only show forecasts or timers without checking the sunscreen on the skin.
+
+Table~\ref{tab:evidence} summarizes the main evidence behind these pain points.
+
+\begin{table}[ht]
+\centering\small
+\caption{Summary of key evidence from the market research}\label{tab:evidence}
+\begin{tabular}{@{}L{3.7cm}L{8.0cm}L{2.0cm}@{}}
+  \toprule
+  \textbf{Finding} & \textbf{Evidence} & \textbf{Source}\\
+  \midrule
+  UV exposure in Vietnam is high & UV index of 9.1--10 in major cities at midday on 24 May 2023 & \cite{vna2023}\\
+  \addlinespace
+  UV harm is serious worldwide & More than 1.5 million skin cancer cases and over 120,000 deaths in 2020 & \cite{whofact}\\
+  \addlinespace
+  Knowing is not doing & 80\% of US adults know the two-hour rule, but 33\% follow it & \cite{aad2021}\\
+  \addlinespace
+  Forgetting is the top reason & 13\% of New Zealanders reapply every two hours; 45\% cite forgetting & \cite{castles2023}\\
+  \addlinespace
+  Many regular users skip reapplication & 20--60\% of regular US users do not reapply, depending on product type & \cite{fct2023}\\
+  \addlinespace
+  Sunscreen is common among urban Vietnamese women & 76\% of women vs.\ 45\% of men apply sunscreen (n = 200, Hanoi and HCMC) & \cite{qandme2026}\\
+  \addlinespace
+  Phones are everywhere & 91.3\% of mobile internet subscriptions in Viet Nam are on smartphones & \cite{vnnews2026}\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Potential Demand}
+Demand for sun care in Vietnam is growing. Section~\ref{sec:market-size} shows that
+the sun care market is forecast to grow from USD 124.12 million in 2022 to
+USD 244.79 million by 2030, a CAGR of 8.86\% \cite{marketsdata2023}. Uvie targets
+the part of that market that already buys sunscreen and is open to a tool that
+makes it work better, rather than people who do not use sun protection at all.
+
+The digital side of the opportunity is also in place. Vietnam had 85.6 million
+internet users in October 2025 \cite{datareportal2026}, and 91.3\% of mobile
+internet subscriptions were on smartphones \cite{vnnews2026}. A camera-based web
+app can therefore reach the target group without any extra hardware.
+
+These numbers show that the need and the channel exist. They do not yet show how
+many people would pay for the patch; that estimate is made in
+Section~\ref{sec:market-size} and tested financially in Section~\ref{sec:financial}.
+
+%====================================================================
 \subsection{Justification for the Selected Market Opportunity}
-TODO
+We chose this opportunity for four reasons.
+
+\begin{enumerate}[itemsep=0pt]
+  \item \textbf{The need is constant and local.} Vietnamese cities regularly reach
+    ``very high'' UV levels (Figure~\ref{fig:uv-vietnam}), so the need for reliable
+    protection is not seasonal or occasional.
+  \item \textbf{The gap is in behavior, not in products.} People already buy
+    sunscreen and know the rules, but they forget or misjudge when to reapply
+    (Figure~\ref{fig:forget}). Uvie adds the missing feedback and works alongside
+    sunscreen brands instead of competing with them.
+  \item \textbf{Existing alternatives leave room.} Current options are expensive,
+    lack a phone app, require extra devices, or do not check the sunscreen on the
+    skin (Section~\ref{sec:competitors}).
+  \item \textbf{We can build it with accessible technology.} The solution combines
+    a UV-sensitive photochromic patch with a free camera-based web app, so users
+    need no new device. At a direct cost of VND 34,000 against a VND 89,000 retail
+    price, the unit economics in Section~\ref{sec:financial} leave a gross margin of
+    about 62\%.
+\end{enumerate}
+
+Figure~\ref{fig:concept} shows the idea in four steps.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      box/.style={draw, rounded corners, align=center, minimum width=4.2cm,
+                  minimum height=1.1cm, font=\small, fill=blue!6},
+      >=Stealth]
+    \node[box] (a) {1. Apply sunscreen\\and wear the patch};
+    \node[box, right=1.2cm of a] (b) {2. UV exposure\\darkens the patch};
+    \node[box, below=0.9cm of b] (c) {3. Scan the patch with\\the phone camera};
+    \node[box, left=1.2cm of c] (d) {4. The app sends a\\reapply reminder};
+    \draw[->, thick] (a) -- (b);
+    \draw[->, thick] (b) -- (c);
+    \draw[->, thick] (c) -- (d);
+    \draw[->, thick] (d) -- (a);
+  \end{tikzpicture}
+  \caption{Concept of the Uvie reminder loop (original illustration).}
+  \label{fig:concept}
+\end{figure}
+
+\paragraph{Assumptions still to be validated.} The opportunity rests on several
+assumptions that this desk research cannot settle on its own:
+\begin{itemize}[itemsep=0pt]
+  \item Vietnamese users reapply sunscreen at least as rarely as the US and New
+    Zealand samples suggest.
+  \item The patch color change tracks real sunscreen wear-off (see the testing in
+    Section~\ref{sec:prototype}).
+  \item Target customers are willing to pay VND 89,000 per package and repurchase
+    about three times a year.
+  \item The product meets the regulatory requirements for skin-contact materials
+    (see Section~\ref{sec:financial}).
+\end{itemize}
