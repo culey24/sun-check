@@ -1,0 +1,131 @@
+% IM1031 - Entrepreneurship and Innovation - Group project report
+% Compile: latexmk -xelatex main.tex   (XeLaTeX is needed for Vietnamese text)
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}   % Times-like font with full Vietnamese support
+\usepackage{setspace}
+\onehalfspacing                  % 1.5 line spacing (required)
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+
+\newcommand{\projectname}{UVie -- Smart Sun-Tracker Patch \& UV Detector Assistant}
+
+\begin{document}
+
+%--------------------------------------------------------------------
+% Title page: project name + group members
+%--------------------------------------------------------------------
+\begin{titlepage}
+  \centering
+  {\large VIETNAM NATIONAL UNIVERSITY -- HO CHI MINH CITY\\
+   HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY\par}
+  \vspace{1.5cm}
+  {\large IM1031 -- Entrepreneurship and Innovation\par}
+  {\large Group Project: New Venture Entrepreneurship Plan\par}
+  \vspace{2cm}
+  {\Huge\bfseries \projectname\par}
+  \vspace{2cm}
+  {\Large Group members\par}
+  \vspace{0.5cm}
+  \begin{singlespace}
+  \begin{tabular}{@{}rll@{}}
+    \toprule
+    \textbf{No.} & \textbf{Full name} & \textbf{Student ID}\\
+    \midrule
+    1 & TODO & TODO\\
+    2 & TODO & TODO\\
+    3 & TODO & TODO\\
+    4 & TODO & TODO\\
+    5 & TODO & TODO\\
+    \bottomrule
+  \end{tabular}
+  \end{singlespace}
+  \vfill
+  Lecturer: TODO\\
+  Ho Chi Minh City, \today
+\end{titlepage}
+\setcounter{page}{2}
+
+%--------------------------------------------------------------------
+% Page 2: members' contributions and evaluations (required)
+%--------------------------------------------------------------------
+\section*{Members' Contributions and Evaluations}
+\begin{singlespace}
+\begin{longtable}{@{}p{0.5cm}p{3.6cm}p{6.6cm}p{2.0cm}p{1.6cm}@{}}
+  \toprule
+  \textbf{No.} & \textbf{Member} & \textbf{Contribution} & \textbf{Share (\%)} & \textbf{Score}\\
+  \midrule
+  \endhead
+  1 & TODO & TODO & TODO & TODO\\
+  2 & TODO & TODO & TODO & TODO\\
+  3 & TODO & TODO & TODO & TODO\\
+  4 & TODO & TODO & TODO & TODO\\
+  5 & TODO & TODO & TODO & TODO\\
+  \bottomrule
+\end{longtable}
+\end{singlespace}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+%--------------------------------------------------------------------
+% Main content (30--50 pages, excluding appendices and references)
+%--------------------------------------------------------------------
+\section{Executive Summary}
+TODO
+
+\section{Identifying Market Opportunities}
+\subsection{Market Research Report}
+Customer needs, pain points and potential demand. TODO
+\subsection{Justification for the Selected Market Opportunity}
+TODO
+
+\section{Evaluating the Market}
+\subsection{Industry Analysis}
+TODO
+\subsection{Market Size Analysis}
+Total addressable market (TAM), serviceable available market (SAM) and target market (SOM). TODO
+\subsection{Competitive Landscape Overview}
+TODO
+
+\section{Designing a Prototype / MVP}
+\subsection{Prototype / MVP Demonstration}
+Physical or digital. The web app source code lives in the repository root. TODO
+\subsection{Design and Development Process}
+TODO
+
+\section{Business Model}
+How the venture creates, delivers and captures value (e.g.\ Business Model Canvas). TODO
+
+\section{Marketing and Sales Plan}
+TODO
+
+\section{Financial Forecasting}
+\subsection{Pro Forma Financial Statements}
+Income statements and balance sheets for the first three years. TODO
+\subsection{LTV and COCA Analysis}
+TODO
+\subsection{Financial Analysis (optional)}
+NPV, IRR, payback period. TODO
+
+%--------------------------------------------------------------------
+% References and appendices (not counted in the 30--50 pages)
+%--------------------------------------------------------------------
+\clearpage
+\nocite{*}  % TODO: remove once the report cites sources with \citep{...}
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section{Appendix}
+TODO
+
+\end{document}
