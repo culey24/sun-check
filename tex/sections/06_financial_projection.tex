@@ -1,0 +1,421 @@
+% Section 6 - Financial Projection (Financial Forecasting)
+\section{Financial Projection}
+\emph{Three-year financial plan and financial feasibility assessment.}
+
+%====================================================================
+\subsection{Overview and Basis of Financial Projections}
+\begin{itemize}[itemsep=0pt]
+  \item Uvie is an interdisciplinary product combining chemical engineering and
+    software technology. The patch uses UV-sensitive photochromic pigments
+    integrated into a skin-compatible substrate. Users apply sunscreen to both
+    their skin and the patch. As the sunscreen protection decreases, UV exposure
+    causes the patch to change color. The Uvie mobile application uses the phone
+    camera to analyze the color intensity and sends a notification reminding
+    users to reapply sunscreen.
+  \item For commercial planning, this report assumes that Uvie generates revenue
+    primarily by selling patch packages. The basic scanning and reminder
+    features of the mobile application are assumed to be free of charge. This
+    approach is intended to reduce adoption barriers, encourage repeated use and
+    support repeat purchases. Revenue from premium subscriptions, advertising,
+    business partnerships and exports is excluded to avoid overstating the
+    project's potential.
+\end{itemize}
+
+\subsubsection{Key Financial Assumptions}
+\begin{table}[ht]
+\centering\small
+\caption{Key financial assumptions (base case)}\label{tab:assumptions}
+\begin{tabular}{@{}L{4.0cm}L{3.2cm}L{7.0cm}@{}}
+  \toprule
+  \textbf{Assumption} & \textbf{Base-case value} & \textbf{Explanation}\\
+  \midrule
+  Average selling price & 89,000 VND/package & Assumed retail price for one Uvie patch package\\
+  Direct cost per package & 34,000 VND/package & Materials, pigments, processing, packaging and quality inspection\\
+  Year 1 sales volume & 18,000 packages & Launch stage, mainly through online sales\\
+  Year 2 sales volume & 50,000 packages & Expansion of brand awareness and distribution channels\\
+  Year 3 sales volume & 100,000 packages & Wider market coverage and higher repeat-purchase volume\\
+  Corporate income tax & 20\% & Assumed standard rate; confirm applicable tax treatment before use\\
+  NPV discount rate & 18\% per year & Assumed required return for an early-stage startup\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Modeling Principles and Limitations}
+\begin{itemize}[itemsep=0pt]
+  \item The model uses a bottom-up approach: sales volume multiplied by average
+    selling price determines revenue; sales volume multiplied by unit cost
+    determines cost of goods sold.
+  \item Operating expenses are estimated based on team size, marketing
+    activities, product research and development, and maintenance of the mobile
+    application.
+  \item No revenue from advertising, premium app subscriptions, B2B contracts or
+    exports is included.
+  \item Inflation, foreign exchange movements, complex financing costs and
+    changes in tax regulations are not modeled.
+\end{itemize}
+
+%====================================================================
+\subsection{Revenue and Cost Forecast}
+
+\subsubsection{Revenue Forecast}
+Revenue is calculated by multiplying the number of packages sold by the average
+selling price. The projected sales growth assumes that Uvie completes its MVP,
+validates the accuracy of color recognition, builds user trust and expands its
+distribution channels.
+
+\[
+  \text{Net Revenue} = \text{Number of Packages Sold} \times \text{Average Selling Price}
+\]
+For Year 1: $18{,}000 \times 89{,}000\ \text{VND} = 1{,}602{,}000{,}000\ \text{VND}$,
+equivalent to VND 1,602 million.
+
+\begin{table}[ht]
+\centering\small
+\caption{Revenue forecast}\label{tab:revenue}
+\begin{tabular}{@{}L{6.2cm}rrr@{}}
+  \toprule
+  \textbf{Metric} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Packages sold & 18,000 & 50,000 & 100,000\\
+  Average selling price (VND/package) & 89,000 & 89,000 & 89,000\\
+  Revenue (VND million) & 1,602 & 4,450 & 8,900\\
+  Revenue growth & -- & 177.8\% & 100.0\%\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Cost of Goods Sold (COGS)}
+COGS includes UV-sensitive pigments, hydrocolloid/silicone substrates, coating
+materials, packaging, processing and quality inspection. The assumed average cost
+is VND 34,000 per package at small-to-medium production scale.
+
+\begin{table}[ht]
+\centering\small
+\caption{Cost of goods sold and gross profit}\label{tab:cogs}
+\begin{tabular}{@{}L{6.2cm}rrr@{}}
+  \toprule
+  \textbf{Metric (VND million)} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Sales volume (packages) & 18,000 & 50,000 & 100,000\\
+  Unit cost (VND/package) & 34,000 & 34,000 & 34,000\\
+  Total COGS & 612 & 1,700 & 3,400\\
+  Gross profit & 990 & 2,750 & 5,500\\
+  Gross profit margin & 61.8\% & 61.8\% & 61.8\%\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Operating Expense Forecast}
+\begin{table}[ht]
+\centering\small
+\caption{Operating expense forecast}\label{tab:opex}
+\begin{tabular}{@{}L{7.4cm}rrr@{}}
+  \toprule
+  \textbf{Expense category (VND million)} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Personnel and team operations & 540 & 780 & 1,080\\
+  Marketing and sales & 360 & 600 & 1,000\\
+  Research and development (R\&D) & 180 & 240 & 300\\
+  Administration, legal and testing & 150 & 210 & 300\\
+  Application maintenance and digital infrastructure & 90 & 120 & 180\\
+  \midrule
+  \textbf{Total operating expenses before depreciation} & \textbf{1,320} & \textbf{1,950} & \textbf{2,860}\\
+  Depreciation & 90 & 110 & 140\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+Testing and legal costs should be updated based on the product's regulatory
+classification, requirements for skin-contact materials, applicable product
+notification/labeling rules and advertising regulations. The estimates above are
+not supplier quotations or legal conclusions.
+
+%====================================================================
+\subsection{Projected Income Statement}
+The projected income statement illustrates Uvie's ability to generate profit over
+the first three years. Unit: VND million.
+
+\begin{table}[ht]
+\centering\small
+\caption{Projected income statement (VND million)}\label{tab:income}
+\begin{tabular}{@{}L{8.0cm}rrr@{}}
+  \toprule
+  \textbf{Income statement item} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Net revenue & 1,602 & 4,450 & 8,900\\
+  (--) Cost of goods sold & (612) & (1,700) & (3,400)\\
+  \textbf{Gross profit} & \textbf{990} & \textbf{2,750} & \textbf{5,500}\\
+  (--) Operating expenses before depreciation & (1,320) & (1,950) & (2,860)\\
+  \textbf{EBITDA} & \textbf{(330)} & \textbf{800} & \textbf{2,640}\\
+  (--) Depreciation & (90) & (110) & (140)\\
+  \textbf{Earnings before interest and tax (EBIT)} & \textbf{(420)} & \textbf{690} & \textbf{2,500}\\
+  (--) Interest expense & (30) & (25) & (15)\\
+  \textbf{Earnings before tax (EBT)} & \textbf{(450)} & \textbf{665} & \textbf{2,485}\\
+  (--) Estimated corporate income tax & 0 & (133) & (497)\\
+  \midrule
+  \textbf{Net profit after tax} & \textbf{(450)} & \textbf{532} & \textbf{1,988}\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Income Statement Analysis}
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{Year 1:} Uvie is expected to incur a loss because personnel,
+    product development and marketing costs arise before sales reach a
+    sufficient scale. This is common during the commercialization stage.
+  \item \textbf{Year 2:} EBITDA is projected to turn positive at VND 800 million,
+    with estimated net profit after tax of VND 532 million. This depends heavily
+    on achieving 50,000 package sales and maintaining the assumed unit cost.
+  \item \textbf{Year 3:} Net profit after tax is projected to increase to
+    VND 1,988 million as sales volume grows and economies of scale are achieved.
+    This outcome requires stable product quality and controlled customer
+    acquisition costs.
+\end{itemize}
+
+\subsubsection{Break-even Analysis}
+\begin{itemize}[itemsep=0pt]
+  \item Contribution per package = Selling price $-$ Direct variable cost
+    $= 89{,}000 - 34{,}000 = 55{,}000$ VND.
+  \item If Year 1 operating expenses and selling costs before depreciation of
+    VND 1,320 million are treated as fixed costs for a simplified calculation,
+    the operating break-even volume is approximately
+    \[
+      \frac{1{,}320{,}000{,}000\ \text{VND}}{55{,}000\ \text{VND}} = 24{,}000
+      \ \text{packages per year}.
+    \]
+    This is higher than the projected Year 1 sales volume of 18,000 packages;
+    therefore, Uvie is not expected to reach operating break-even in its first
+    year.
+  \item This simplified calculation treats all operating expenses as fixed. A
+    detailed model should separate fixed and variable costs and include sales
+    discounts, returns, marketplace fees and distributor commissions.
+\end{itemize}
+
+%====================================================================
+\subsection{Projected Balance Sheet and Funding Requirements}
+The following simplified projected balance sheet illustrates the structure of
+assets, liabilities and shareholders' equity. Cash, working capital and
+liabilities should ultimately be linked to a detailed cash flow forecast,
+collection and payment schedules, inventory assumptions and debt repayment plan.
+
+\subsubsection{Initial Funding Requirements}
+\begin{table}[ht]
+\centering\small
+\caption{Initial funding requirements}\label{tab:funding}
+\begin{tabular}{@{}L{4.4cm}L{2.6cm}L{7.2cm}@{}}
+  \toprule
+  \textbf{Use of funds} & \textbf{Amount (VND million)} & \textbf{Description}\\
+  \midrule
+  Equipment, tools and fixed assets & 450 & Testing equipment, inspection tools and assets for prototype production\\
+  Commercialization preparation & 150 & Packaging design, initial testing, legal preparation and sales-channel setup\\
+  Initial working capital & 300 & Raw material inventory, finished goods, cash and initial operating expenses\\
+  \midrule
+  \textbf{Total initial funding requirement} & \textbf{900} & Assumed founders' equity/investor funding\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Illustrative Projected Balance Sheet}
+\begin{table}[ht]
+\centering\small
+\caption{Illustrative projected balance sheet (VND million)}\label{tab:balance}
+\begin{tabular}{@{}L{6.4cm}rrrr@{}}
+  \toprule
+  \textbf{Balance sheet item} & \textbf{Opening} & \textbf{End Y1} & \textbf{End Y2} & \textbf{End Y3}\\
+  \midrule
+  \textbf{Assets} & & & &\\
+  \quad Cash and cash equivalents$^{*}$ & 300 & 120 & 420 & 1,650\\
+  \quad Inventory and net receivables$^{*}$ & 300 & 430 & 650 & 1,000\\
+  \quad Net property, plant and equipment & 450 & 460 & 450 & 460\\
+  \textbf{Total assets} & \textbf{1,050} & \textbf{1,010} & \textbf{1,520} & \textbf{3,110}\\
+  \midrule
+  \textbf{Liabilities} & & & &\\
+  \quad Short/long-term borrowings and payables$^{*}$ & 150 & 560 & 538 & 140\\
+  \textbf{Shareholders' equity} & & & &\\
+  \quad Initial contributed capital & 900 & 900 & 900 & 900\\
+  \quad Accumulated retained earnings & 0 & (450) & 82 & 2,070\\
+  \textbf{Total liabilities and equity} & \textbf{1,050} & \textbf{1,010} & \textbf{1,520} & \textbf{3,110}\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+{\small $^{*}$ Cash, inventory/net receivables and liabilities are illustrative
+balances designed to demonstrate the balance sheet structure; they have not been
+fully derived from an integrated cash flow statement. Opening resources comprise
+VND 900 million of contributed capital and an assumed VND 150 million of
+payables/short-term borrowing. Retained earnings are accumulated from the
+projected net profit after tax.\par}
+
+Before submission as a formal financial statement, this table should be replaced
+with a fully linked balance sheet based on the cash flow statement, depreciation
+schedule, inventory, receivables, payables and debt repayment schedule. The
+illustrative balance sheet should not be presented as verified accounting data.
+
+\subsubsection{Potential Funding Sources}
+\begin{itemize}[itemsep=0pt]
+  \item Founders' capital and angel investors: finance equipment, formulation
+    refinement and product testing.
+  \item Innovation competitions and incubator programs: support testing, user
+    trials and MVP development.
+  \item Contract manufacturing and small-batch production: reduce machinery
+    investment, inventory exposure and capacity risk.
+  \item Scale production only after validating color stability, material safety,
+    defect rates and customer repeat-purchase behavior.
+\end{itemize}
+
+%====================================================================
+\subsection{Financial Ratios and Customer Economics}
+
+\subsubsection{CAC/COCA -- Customer Acquisition Cost}
+In this report, COCA is interpreted as Cost of Customer Acquisition, equivalent to
+CAC: the cost of acquiring one new customer. It is calculated by dividing
+marketing and sales expenditure by the number of new customers acquired during
+the period.
+
+\begin{table}[ht]
+\centering\small
+\caption{Customer acquisition cost (CAC/COCA)}\label{tab:cac}
+\begin{tabular}{@{}L{6.2cm}rrr@{}}
+  \toprule
+  \textbf{Metric} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Marketing and sales cost (VND million) & 360 & 600 & 1,000\\
+  New customers (people) & 12,000 & 30,000 & 60,000\\
+  CAC/COCA (VND/customer) & 30,000 & 20,000 & 16,667\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+CAC is assumed to decline over time due to stronger brand awareness,
+word-of-mouth referrals and improved marketing efficiency. This assumption must be
+validated using campaign-level data. Actual CAC may be higher if discounts,
+commissions and sales personnel costs are included.
+
+\subsubsection{LTV -- Customer Lifetime Value}
+LTV is estimated as the gross profit generated by one customer over the period in
+which they continue purchasing the product. Assuming that one customer purchases
+an average of three packages per year, remains active for two years, and generates
+gross profit of VND 55,000 per package:
+\[
+  \text{LTV} = 55{,}000\ \text{VND} \times 3\ \text{packages/year} \times 2\ \text{years}
+  = 330{,}000\ \text{VND per customer}.
+\]
+This simplified formula does not discount future cash flows and does not deduct
+customer service, return, or application operating costs. LTV should be updated
+using actual cohort retention and repeat-purchase data.
+
+\subsubsection{LTV/CAC Ratio}
+\begin{table}[ht]
+\centering\small
+\caption{LTV/CAC ratio}\label{tab:ltvcac}
+\begin{tabular}{@{}L{6.2cm}rrr@{}}
+  \toprule
+  \textbf{Metric} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  LTV (VND/customer) & 330,000 & 330,000 & 330,000\\
+  CAC (VND/customer) & 30,000 & 20,000 & 16,667\\
+  LTV/CAC & $11.0\times$ & $16.5\times$ & $19.8\times$\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+An LTV/CAC ratio above 1 indicates that estimated lifetime gross profit exceeds
+the cost of acquiring a customer. However, ratios of $11.0\times$--$19.8\times$ are
+highly attractive and may reflect optimistic assumptions. The team should validate
+purchase frequency, retention, fully loaded CAC and actual gross margin. This
+ratio alone is not sufficient to conclude that the project is financially viable.
+
+\subsubsection{Additional Performance Indicators}
+\begin{itemize}[itemsep=0pt]
+  \item Gross profit margin $= (\text{Revenue} - \text{COGS}) / \text{Revenue}
+    = 61.8\%$ under the base-case assumptions.
+  \item EBITDA margin is approximately $-20.6\%$, $18.0\%$ and $29.7\%$ in
+    Years 1, 2 and 3, respectively.
+  \item Repeat-purchase rate, return rate, defective patch rate and
+    warranty/support costs should be monitored as key operating KPIs.
+\end{itemize}
+
+%====================================================================
+\subsection{NPV, IRR and Financial Feasibility Assessment}
+Net Present Value (NPV) measures the present value of a project's expected cash
+flows after discounting them at the required rate of return. Internal Rate of
+Return (IRR) is the discount rate at which NPV equals zero.
+
+\subsubsection{Illustrative Project Cash Flows}
+For illustration, the model assumes an initial investment of VND 900 million and
+the following estimated free cash flow to the firm (FCFF). FCFF is approximated as
+after-tax EBIT plus depreciation, less capital expenditure and increases in net
+working capital.
+
+\begin{table}[ht]
+\centering\small
+\caption{Illustrative free cash flow to the firm (VND million)}\label{tab:fcff}
+\begin{tabular}{@{}L{6.0cm}rrrr@{}}
+  \toprule
+  \textbf{Cash flow item} & \textbf{Year 0} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3}\\
+  \midrule
+  Initial investment & (900) & -- & -- & --\\
+  EBIT & -- & (420) & 690 & 2,500\\
+  Tax on EBIT (estimated) & -- & 0 & (138) & (500)\\
+  Add: depreciation & -- & 90 & 110 & 140\\
+  Capital expenditure (CAPEX) & -- & (100) & (100) & (150)\\
+  Increase in net working capital & -- & (100) & (150) & (200)\\
+  \midrule
+  \textbf{Free cash flow (FCFF)} & \textbf{(900)} & \textbf{(530)} & \textbf{412} & \textbf{1,790}\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{NPV and IRR Results}
+Using an assumed annual discount rate of 18\%:
+\[
+  \text{NPV} = \sum_{t=0}^{3} \frac{\text{FCFF}_t}{(1 + 18\%)^{t}}
+  \approx +36.2\ \text{VND million},
+  \qquad
+  \text{IRR} \approx 19.3\%.
+\]
+Under the base-case scenario, NPV is positive and IRR is slightly higher than the
+18\% discount rate, indicating that the project marginally exceeds the required
+return. However, the margin of safety is limited: NPV is only approximately
+VND 36.2 million. A relatively small decline in sales volume or increase in unit
+cost or marketing expenditure could make NPV negative.
+
+\subsubsection{Sensitivity and Risk Analysis}
+\begin{table}[ht]
+\centering\small
+\caption{Key risk factors and mitigation}\label{tab:risk}
+\begin{tabular}{@{}L{4.0cm}L{5.0cm}L{5.0cm}@{}}
+  \toprule
+  \textbf{Risk factor} & \textbf{Potential financial impact} & \textbf{Mitigation}\\
+  \midrule
+  Sales volume below forecast & Lower revenue and longer time to break even & Run small-batch market tests and track conversion rates\\
+  Increase in unit production cost & Lower gross profit margin & Maintain 2--3 suppliers; optimize materials and packaging\\
+  Higher customer acquisition cost & Lower LTV/CAC and weaker cash flow & Measure CAC by channel; prioritize referrals and educational content\\
+  Unstable sensor accuracy & More returns, lower repeat purchases and reputational damage & Test under different UV, sweat and lighting conditions\\
+  Additional testing or regulatory requirements & Higher costs and delayed launch & Set aside a testing budget and obtain professional advice\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+%====================================================================
+\subsection{Conclusion and Recommendations}
+\begin{itemize}[itemsep=0pt]
+  \item Based on the illustrative assumptions, Uvie has the potential to achieve a
+    gross profit margin of approximately 61.8\%, turn EBITDA positive in Year 2
+    and generate estimated net profit after tax of VND 1,988 million in Year 3.
+    Estimated NPV is positive at VND 36.2 million, while IRR is approximately
+    19.3\%, slightly above the assumed 18\% discount rate. These results suggest
+    that the project may be financially feasible under the base-case scenario,
+    although its margin of safety is relatively narrow.
+  \item Before finalizing the report, the team should obtain quotations for patch
+    materials and manufacturing, confirm the number of patches per package, test
+    customers' willingness to pay, develop channel-specific marketing budgets and
+    conduct pilot sales. In particular, the safety of skin-contact materials and
+    the reliability of the color-recognition algorithm must be validated. These
+    factors directly affect unit cost, testing expenses, repeat-purchase rates and
+    cash flow.
+  \item \textbf{Final conclusion:} The figures presented are scenario-based
+    projections, not guaranteed returns. The team should update the model using
+    actual data and prepare conservative, base-case and optimistic scenarios
+    before making investment decisions.
+\end{itemize}

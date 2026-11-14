@@ -7,9 +7,11 @@
 \setmainfont{TeX Gyre Termes}   % Times-like font with full Vietnamese support
 \usepackage{setspace}
 \onehalfspacing                  % 1.5 line spacing (required)
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage[numbers]{natbib}
@@ -79,42 +81,17 @@
 %--------------------------------------------------------------------
 % Main content (30--50 pages, excluding appendices and references)
 %--------------------------------------------------------------------
-\section{Executive Summary}
-TODO
+\input{sections/01_market_opportunities}
 
-\section{Identifying Market Opportunities}
-\subsection{Market Research Report}
-Customer needs, pain points and potential demand. TODO
-\subsection{Justification for the Selected Market Opportunity}
-TODO
+\input{sections/02_market_evaluation}
 
-\section{Evaluating the Market}
-\subsection{Industry Analysis}
-TODO
-\subsection{Market Size Analysis}
-Total addressable market (TAM), serviceable available market (SAM) and target market (SOM). TODO
-\subsection{Competitive Landscape Overview}
-TODO
+\input{sections/03_prototype_mvp}
 
-\section{Designing a Prototype / MVP}
-\subsection{Prototype / MVP Demonstration}
-Physical or digital. The web app source code lives in the repository root. TODO
-\subsection{Design and Development Process}
-TODO
+\input{sections/04_business_model}
 
-\section{Business Model}
-How the venture creates, delivers and captures value (e.g.\ Business Model Canvas). TODO
+\input{sections/05_marketing_sales}
 
-\section{Marketing and Sales Plan}
-TODO
-
-\section{Financial Forecasting}
-\subsection{Pro Forma Financial Statements}
-Income statements and balance sheets for the first three years. TODO
-\subsection{LTV and COCA Analysis}
-TODO
-\subsection{Financial Analysis (optional)}
-NPV, IRR, payback period. TODO
+\input{sections/06_financial_projection}
 
 %--------------------------------------------------------------------
 % References and appendices (not counted in the 30--50 pages)
