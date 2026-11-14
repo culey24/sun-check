@@ -1,26 +1,60 @@
-% !TEX program = xelatex
+% !TEX program = pdflatex
 % IM1031 - Entrepreneurship and Innovation - Group project report
-% Compile: latexmk main.tex   (.latexmkrc selects XeLaTeX, needed for Vietnamese text)
+% Compile: latexmk -pdf main.tex   (or just press Recompile on Overleaf)
+% Logo: put the HCMUT logo at tex/assets/hcmut.png (optional while drafting).
 \documentclass[12pt,a4paper]{article}
 
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{fontspec}
-% Main font: first available of Times New Roman, TeX Gyre Termes, Liberation Serif,
-% then Latin Modern Roman (always installed with TeX Live). All support Vietnamese.
-\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{%
-\IfFontExistsTF{TeX Gyre Termes}{\setmainfont{TeX Gyre Termes}}{%
-\IfFontExistsTF{Liberation Serif}{\setmainfont{Liberation Serif}}{%
-\setmainfont{Latin Modern Roman}}}}
+% --- Encoding & fonts (T5 = Vietnamese-capable, works with pdflatex) ---
+\IfFileExists{t5enc.def}{\usepackage[T5]{fontenc}}{\usepackage[T1]{fontenc}} % T1 fallback if vntex is missing
+\usepackage{lmodern}
+
+% --- Page geometry, spacing, headers/footers ---
+\usepackage[margin=2.5cm,headheight=30pt]{geometry}
 \usepackage{setspace}
-\onehalfspacing                  % 1.5 line spacing (required)
-\usepackage{amsmath}
+\onehalfspacing                  % 1.5 line spacing (required by the guideline)
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+
+% --- Graphics & TikZ ---
 \usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usetikzlibrary{positioning,arrows.meta}
+
+% Logo helper: draws the logo only if assets/hcmut.png exists
+\newcommand{\hcmutlogo}[1]{\IfFileExists{assets/hcmut.png}{\includegraphics[#1]{assets/hcmut.png}}{}}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{%
+  \begin{tabular}{rl}
+    \raisebox{-3pt}{\hcmutlogo{height=8mm}} &
+    \begin{tabular}{l}
+      \bfseries Ho Chi Minh City University of Technology
+    \end{tabular}
+  \end{tabular}
+}
+\fancyfoot{}
+\fancyfoot[R]{\scriptsize\ttfamily Page \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% --- Tables, floats, math, lists ---
 \usepackage{booktabs}
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{longtable}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{enumitem}
-\usepackage[numbers]{natbib}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+% --- Hyperlinks (load last) ---
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
 
 \newcommand{\projectname}{UVie -- Smart Sun-Tracker Patch \& UV Detector Assistant}
@@ -31,54 +65,56 @@
 % Title page: project name + group members
 %--------------------------------------------------------------------
 \begin{titlepage}
+  \begin{tikzpicture}[remember picture,overlay,inner sep=0,outer sep=0]
+    \draw[blue!70!black,line width=4pt] ([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--([xshift=1.5cm,yshift=-2cm]current page.north west) coordinate(B)--([xshift=1.5cm,yshift=2cm]current page.south west) coordinate (C)--([xshift=-1.5cm,yshift=2cm]current page.south east) coordinate(D)--cycle;
+
+    \draw ([yshift=0.5cm,xshift=-0.3cm]A)-- ([yshift=0.5cm,xshift=0.5cm]B)--
+    ([yshift=-0.5cm,xshift=0.5cm]B) --([yshift=-0.5cm,xshift=-0.5cm]B)--([yshift=0.5cm,xshift=-0.5cm]C)--([yshift=0.5cm,xshift=0.5cm]C)--([yshift=-0.5cm,xshift=0.5cm]C)-- ([yshift=-0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=0.5cm]D)--([yshift=-0.5cm,xshift=0.5cm]A)--([yshift=-0.5cm,xshift=-0.5cm]A)--([yshift=0.5cm,xshift=-0.5cm]A);
+
+    \draw ([yshift=-0.3cm,xshift=0.3cm]A)-- ([yshift=-0.3cm,xshift=-0.3cm]B)--
+    ([yshift=0.3cm,xshift=-0.3cm]B) --([yshift=0.3cm,xshift=0.3cm]B)--
+    ([yshift=-0.3cm,xshift=0.3cm]C)--([yshift=-0.3cm,xshift=-0.3cm]C)--([yshift=0.3cm,xshift=-0.3cm]C)-- ([yshift=0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=-0.3cm]D)--([yshift=0.3cm,xshift=-0.3cm]A)--([yshift=0.3cm,xshift=0.3cm]A)--([yshift=-0.3cm,xshift=0.3cm]A);
+  \end{tikzpicture}
+
   \centering
-  {\large VIETNAM NATIONAL UNIVERSITY -- HO CHI MINH CITY\\
-   HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY\par}
-  \vspace{1.5cm}
-  {\large IM1031 -- Entrepreneurship and Innovation\par}
-  {\large Group Project: New Venture Entrepreneurship Plan\par}
-  \vspace{2cm}
-  {\Huge\bfseries \projectname\par}
-  \vspace{2cm}
-  {\Large Group members\par}
-  \vspace{0.5cm}
-  \begin{singlespace}
-  \begin{tabular}{@{}rll@{}}
-    \toprule
-    \textbf{No.} & \textbf{Full name} & \textbf{Student ID}\\
-    \midrule
-    1 & TODO & TODO\\
-    2 & TODO & TODO\\
-    3 & TODO & TODO\\
-    4 & TODO & TODO\\
-    5 & TODO & TODO\\
-    \bottomrule
-  \end{tabular}
-  \end{singlespace}
+  \singlespacing
+  {\bfseries\normalsize VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY \\[0.2em]
+    HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY\\[0.5em]\par}
+  \vspace{1em}
+  \hcmutlogo{width=10cm}\par
+  \vspace{1em}
+  {\Large\textbf{PROJECT: ENTREPRENEURSHIP \& INNOVATION (IM1031)}}\par
+  \vspace{2em}
+
+  {\large\textbf{TITLE: \projectname}}\par
+
+  \vspace{2em}
+  {\large INSTRUCTOR: \textit{TODO}}\par
+  \vspace{1em}
+  {\large CLASS: \textit{TODO}\quad GROUP: \textit{TODO}}\par
   \vfill
-  Lecturer: TODO\\
-  Ho Chi Minh City, \today
+
+  \begin{tabular}{ll}
+    \hline
+    \textbf{Full Name} & \textbf{Student ID} \\
+    \hline
+    TODO & TODO \\
+    TODO & TODO \\
+    TODO & TODO \\
+    TODO & TODO \\
+    TODO & TODO \\
+    \hline
+  \end{tabular}
+
+  \vspace{1em}
+  {\footnotesize Ho Chi Minh City, \today}
 \end{titlepage}
 \setcounter{page}{2}
 
 %--------------------------------------------------------------------
-% Page 2: members' contributions and evaluations (required)
+% Page 2: members' contributions and evaluations (required by guideline)
 %--------------------------------------------------------------------
-\section*{Members' Contributions and Evaluations}
-\begin{singlespace}
-\begin{longtable}{@{}p{0.5cm}p{3.6cm}p{6.6cm}p{2.0cm}p{1.6cm}@{}}
-  \toprule
-  \textbf{No.} & \textbf{Member} & \textbf{Contribution} & \textbf{Share (\%)} & \textbf{Score}\\
-  \midrule
-  \endhead
-  1 & TODO & TODO & TODO & TODO\\
-  2 & TODO & TODO & TODO & TODO\\
-  3 & TODO & TODO & TODO & TODO\\
-  4 & TODO & TODO & TODO & TODO\\
-  5 & TODO & TODO & TODO & TODO\\
-  \bottomrule
-\end{longtable}
-\end{singlespace}
+\input{sections/contribution}
 \clearpage
 
 \tableofcontents
@@ -103,9 +139,15 @@
 % References and appendices (not counted in the 30--50 pages)
 %--------------------------------------------------------------------
 \clearpage
-\nocite{*}  % TODO: remove once the report cites sources with \citep{...}
-\bibliographystyle{plainnat}
-\bibliography{references}
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{00}
+
+% Add entries alphabetically by first author's initial, IEEE style, e.g.:
+% \bibitem{key} A.~Author, ``Title,'' \emph{Journal}, vol.~1, no.~1, pp.~1--10, 2026.
+\bibitem{todo} TODO: replace with the first reference and cite it in the text with \texttt{\textbackslash cite\{key\}}.
+
+\end{thebibliography}
 
 \appendix
 \section{Appendix}
