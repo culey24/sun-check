@@ -66,8 +66,8 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 
-% --- Citations (APA-style author-year), numbering and captions ---
-\usepackage[authoryear,round]{natbib}
+% --- Citations (IEEE-style numeric [1], [2]), numbering and captions ---
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage[labelsep=period]{caption}
 \numberwithin{table}{section}    % Table 2.1, Table 6.3, ...
 \numberwithin{figure}{section}   % Figure 2.1, ...
@@ -168,36 +168,39 @@
 \renewcommand{\bibsection}{\section*{References}\addcontentsline{toc}{section}{References}}
 \begin{thebibliography}{00}
 
-% APA style, sorted alphabetically. Label format: [Short author(Year)Full author].
-% Cite in the text with \citet{key} -> Author (Year)  or  \citep{key} -> (Author, Year).
+% IEEE style, numbered in the order listed here (alphabetical by first author).
+% Cite in the text with \cite{key} -> [n]  or  \citet{key} -> Author [n].
+% Label format: [Short author(Year)Full author] only controls \citet; the number comes from the list order.
 
 \bibitem[AAD(2023)American Academy of Dermatology]{aad2023}
-American Academy of Dermatology [AAD]. (2023). \emph{Sunscreen FAQs}.
+American Academy of Dermatology, ``Sunscreen FAQs,'' 2023. [Online]. Available:
 \url{https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/sunscreen-faqs}
 
 \bibitem[IMARC Group(2026)]{imarc2026}
-IMARC Group. (2026). \emph{Sun Care Products Market Size, Share, Trends and Forecast, 2026--2034}
-(Report ID: SR112026A1439). \url{https://www.imarcgroup.com/sun-care-products-market}
+IMARC Group, ``Sun Care Products Market Size, Share, Trends and Forecast, 2026--2034,''
+Report ID SR112026A1439, 2026. [Online]. Available:
+\url{https://www.imarcgroup.com/sun-care-products-market}
 
 \bibitem[Markets and Data(2023)]{marketsdata2023}
-Markets and Data. (2023). \emph{Vietnam Sun Care Market Assessment, Opportunities, and Forecast, 2016--2030F}
-(Report ID: MX10260). \url{https://www.marketsandata.com/industry-reports/vietnam-sun-care-market}
+Markets and Data, ``Vietnam Sun Care Market Assessment, Opportunities, and Forecast, 2016--2030F,''
+Report ID MX10260, 2023. [Online]. Available:
+\url{https://www.marketsandata.com/industry-reports/vietnam-sun-care-market}
 
 \bibitem[Porter(2018)]{porter2018}
-Porter, J. (2018, November 14). L'Or\'eal's wearable sensor will track your UV exposure throughout the day.
-\emph{The Verge}.
+J.~Porter, ``L'Or\'eal's wearable sensor will track your UV exposure throughout the day,''
+\emph{The Verge}, Nov.~14, 2018. [Online]. Available:
 \url{https://www.theverge.com/2018/11/14/18094903/loreal-uva-track-la-roche-posay-my-skin-uv-sensor-wearable-exposure-sun-uvb}
 
 \bibitem[SPOTMYUV(2024)]{spotmyuv2024}
-SPOTMYUV. (2024). \emph{SPOTMYUV UV Detection Stickers -- 16 Pack}.
+SPOTMYUV, ``SPOTMYUV UV detection stickers -- 16 pack,'' 2024. [Online]. Available:
 \url{https://spotmyuv.com/products/spotmyuv-uv-detection-stickers-16-pack}
 
 \bibitem[Statista(2024)]{statista2024}
-Statista. (2024). \emph{Sun Protection -- Vietnam | Statista Market Forecast}.
+Statista, ``Sun protection -- Vietnam,'' \emph{Statista Market Forecast}, 2024. [Online]. Available:
 \url{https://www.statista.com/outlook/cmo/beauty-personal-care/skin-care/sun-protection/vietnam}
 
 \bibitem[WHO(2022)World Health Organization]{who2022}
-World Health Organization [WHO]. (2022). \emph{Global solar UV index: A practical guide}.
+World Health Organization, ``Global solar UV index: A practical guide,'' 2022. [Online]. Available:
 \url{https://www.who.int/publications/i/item/9241590016}
 
 \end{thebibliography}
