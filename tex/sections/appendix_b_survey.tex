@@ -1,0 +1,69 @@
+% Appendix B - Customer Survey (instrument, method, results)
+% The tables of results are generated from the real responses by survey/analyze_survey.py.
+% Until the survey has been run, survey/results.tex contains red [TBD] placeholders. No result is invented.
+\section{Customer Survey}\label{app:survey}
+
+\subsection{Purpose}
+The market research in Section~\ref{sec:market-opportunities} relies on surveys from the
+United States and New Zealand for reapplication behavior, because no Vietnamese survey
+was found. This appendix describes a short survey of our target group, aged 18 to 35,
+that tests three assumptions behind the business model: that people know the
+reapplication advice but rarely follow it, that they own a smartphone with a camera,
+and that they would consider buying the patch at VND 89,000.
+
+\subsection{Method}
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{Sample.} A convenience sample of at least 30 university students and
+    young workers, reached through the members' class groups and social media. This is
+    not a random sample, so the results show the views of this group only and cannot be
+    applied to all Vietnamese consumers.
+  \item \textbf{Format.} An anonymous online form (about three minutes) with 14 questions
+    (Table~\ref{tab:svy-questions}). Participants read a short consent note and could
+    stop at any time. Only people aged 18 or over take part; answers marked ``Under 18''
+    are excluded from the analysis.
+  \item \textbf{Question order.} The concept is described neutrally before Q10. The price
+    of VND 89,000 is shown only after respondents have stated the highest price they would
+    pay (Q11), so that the stated price does not influence that answer.
+  \item \textbf{Analysis.} The script \texttt{survey/analyze\_survey.py} reads the exported
+    responses and writes the tables below. Each indicator is shown as a count out of all
+    valid respondents with a 95\% Wilson confidence interval. With 30 respondents, one
+    person moves a percentage by more than three points and the intervals are wide.
+\end{itemize}
+
+\subsection{Questionnaire}
+\begin{longtable}{@{}L{0.9cm}L{7.2cm}L{6.1cm}@{}}
+\caption{Survey questionnaire}\label{tab:svy-questions}\\
+\toprule \textbf{No.} & \textbf{Question} & \textbf{Answer options}\\ \midrule
+\endfirsthead
+\toprule \textbf{No.} & \textbf{Question} & \textbf{Answer options}\\ \midrule
+\endhead
+\bottomrule
+\endfoot
+Q1 & What is your age group? & Under 18; 18-22; 23-27; 28-35; Over 35\\
+Q2 & What is your occupation? & University student; Working; Other\\
+Q3 & Which city do you live in? & Ho Chi Minh City; Hanoi; Da Nang; Other\\
+Q4 & How often do you use sunscreen when you go outdoors in the daytime? & Never; Rarely; Sometimes; Often; Always\\
+Q5 & Have you heard the advice to reapply sunscreen every two hours? & Yes; No\\
+Q6 & When you are outdoors for more than two hours, how often do you reapply sunscreen? & Never; Rarely; Sometimes; Often; Always\\
+Q7 & If you do not always reapply, why? (select all that apply) & I forget; I do not think it is necessary; It is inconvenient; I do not have sunscreen with me; It feels bad on my skin or makeup; Other; I always reapply\\
+Q8 & How do you decide when to reapply? (select all that apply) & By time (phone alarm or watch); When my skin feels hot or looks red; After sweating or swimming; I do not decide; Other\\
+Q9 & Do you own a smartphone with a camera? & Yes; No\\
+\multicolumn{3}{@{}p{14.2cm}}{\emph{Concept shown to respondents:} Imagine a small round patch that you stick on your skin before applying sunscreen. It stays light while UV is blocked and turns dark when UV reaches it. You scan it with your phone, and an app tells you whether to reapply your sunscreen.}\\
+Q10 & How interested are you in using such a patch? & 1 (not at all) to 5 (very interested)\\
+Q11 & What is the highest price you would pay for one package? & Under VND 50k; VND 50k to under 89k; VND 89k to 120k; Over VND 120k; I would not buy\\
+\multicolumn{3}{@{}p{14.2cm}}{\emph{Price shown to respondents:} One package costs VND 89,000.}\\
+Q12 & At that price, how likely are you to buy it? & 1 (very unlikely) to 5 (very likely)\\
+Q13 & Where would you most likely buy it? & TikTok Shop; Shopee; Pharmacy; Beauty store; Other\\
+Q14 & What would worry you about it? (select all that apply) & Skin irritation; Accuracy; Price; Having to use a phone app; None\\
+\end{longtable}
+
+\subsection{Results}
+\input{survey/results.tex}
+
+\subsection{How to Read the Results}
+\noindent\textcolor{red}{\textbf{[TBD after the survey is run]}} Summarize in three or four sentences:
+whether the reapplication gap seen abroad also appears in this sample (Table~\ref{tab:svy-key}),
+which reasons are most common (Table~\ref{tab:svy-reasons}), and whether stated willingness to pay
+(Table~\ref{tab:svy-wtp}) supports the price of VND 89,000. State clearly that purchase
+intention measured in a survey usually overstates real purchases, and that the sample is small and
+not random.

@@ -1,0 +1,86 @@
+% Appendix D - Future work: virtual laboratory with a chemical ontology
+\section{Future Work: A Virtual Laboratory with a Chemical Ontology}\label{app:futurework}
+
+This appendix describes a direction the team may pursue after the course. It is an idea,
+not a part of the MVP or of the financial forecast, and nothing in it has been built.
+
+\subsection{Why a Virtual Laboratory}
+The quality of the patch depends on many choices: which photochromic molecule, which host material and
+solvent, how thick the coating is, and whether other additives are present. Each combination has to be
+tested for response time, fade time, and the effect of sunscreen (Appendix~\ref{app:photochromic}).
+Testing every combination by hand would be slow and costly for a small team. A virtual laboratory
+would record these experiments in a structured way, learn from them, and suggest which formulation to
+test next.
+
+Research groups call the physical counterpart a \emph{self-driving laboratory}, in which
+automation and artificial intelligence plan and run experiments \cite{abolhasani2023,tom2024}.
+Such laboratories are expensive, but a review of low-cost versions describes ``frugal twins,'' such as a
+color-mixing laboratory that gives hands-on experience at low cost \cite{lo2024}. A color-based patch
+test is close to that idea.
+
+\subsection{Concept}
+Figure~\ref{fig:vlab} shows three layers.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      layer/.style={draw, rounded corners, minimum width=12.6cm, minimum height=1.35cm,
+                    align=center, font=\small, text width=12.2cm},
+      >=Stealth]
+    \node[layer, fill=blue!6]  (a) at (0,0)    {\textbf{3. Virtual laboratory}\\Models predict color response and fade time from a formulation and conditions, and propose the next experiment};
+    \node[layer, fill=blue!12] (b) at (0,-1.8) {\textbf{2. Experiment knowledge graph}\\Every patch test is stored with its formulation, conditions (UV index, temperature, SPF), measurements, and photographs};
+    \node[layer, fill=blue!20] (c) at (0,-3.6) {\textbf{1. Chemical ontology}\\Photochromic molecules, polymers, solvents, UV filters, and their classes and roles};
+    \draw[->, thick] (c) -- (b);
+    \draw[->, thick] (b) -- (a);
+  \end{tikzpicture}
+  \caption{Proposed layers of a virtual laboratory for patch formulation (original concept).}
+  \label{fig:vlab}
+\end{figure}
+
+\paragraph{Layer 1: chemical ontology.} An ontology gives every chemical a place in a classification
+and a defined role, so that software can reason about them. ChEBI, an open ontology of chemical
+entities, classifies entities by shared structure and by role, using relations such as ``is a'' and
+``has role'' \cite{hastings2016}. We would reuse such an ontology where it covers our materials and add
+our own classes for photochromic dyes, host materials, and UV filters where it does not. Whether
+industrial dyes are covered would have to be checked.
+
+\paragraph{Layer 2: experiment knowledge graph.} Following approaches already used in laboratories,
+experiments are recorded as linked data: the ontology describes the materials and the steps, and each
+run adds a record with its provenance \cite{bai2024}. Work on semantic models for wet-chemical synthesis
+shows how free-text procedures, which contain vague phrases like ``room temperature,'' can be replaced by
+structured steps that machines can read \cite{schilling2026}.
+
+\paragraph{Layer 3: virtual laboratory.} With enough records, simple models can estimate how a new
+formulation behaves, and the system can rank candidates before anyone mixes them. Real experiments
+stay the final judge.
+
+\subsection{Roadmap}
+\begin{table}[ht]
+\centering\small
+\caption{Possible stages of the virtual laboratory}\label{tab:vlab-roadmap}
+\begin{tabular}{@{}L{2.4cm}L{6.4cm}L{5.3cm}@{}}
+  \toprule
+  \textbf{Stage} & \textbf{Content} & \textbf{Needs}\\
+  \midrule
+  1. Structured log & Record every patch test in one table with fixed fields and photographs & Spreadsheet or small database; test protocol (Table~\ref{tab:photochromic-plan})\\
+  \addlinespace
+  2. Ontology and graph & Describe materials and tests with an ontology and store them as a graph & A chemist's advice; open tools\\
+  \addlinespace
+  3. Predictive models & Fit simple models of response and fade time to the data & Enough experiments; basic machine-learning skills\\
+  \addlinespace
+  4. Low-cost automation & A camera and UV lamp rig that photographs patches on a schedule & Small hardware budget; careful safety checks\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Limits and Risks}
+\begin{itemize}[itemsep=0pt]
+  \item The approach only pays off if the team runs many experiments; with a handful of tests, a
+    spreadsheet is enough.
+  \item Building and maintaining an ontology needs chemistry expertise that the team does not yet
+    have in-house.
+  \item Predictions from a model are only as good as the data, and a new material may behave
+    differently from the ones already tested.
+  \item The effort competes with work on the product and the market, so it should start only after
+    the basic patch tests have given usable results.
+\end{itemize}

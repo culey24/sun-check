@@ -51,3 +51,11 @@ Appendix A hiện chỉ có dòng của Hoàng Hà (Section 2). Cần thêm dòn
 ## 6. Gợi ý nhỏ cho Section 1
 
 Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng kem chống nắng dùng ở vận động viên trẻ) vào mục 1.2 làm bằng chứng cho lý do 2; hiện tại nguồn này mới xuất hiện ở Section 3.
+
+## 7. Phụ lục B, C, D (thêm 2026-11-15)
+
+- **Appendix B (khảo sát):** có bộ câu hỏi 14 câu, phương pháp, và các bảng kết quả **để trống** (ô đỏ `[TBD]`). Mình không tự tạo số liệu khảo sát. Cách làm: tạo Google Form theo bảng B.1 (tiêu đề câu hỏi bắt đầu bằng `Q1.`, `Q2.`...), thu ít nhất 30 người từ 18 tuổi, xuất CSV, rồi chạy `python3 survey/analyze_survey.py responses.csv` trong thư mục `tex/survey/`. Script ghi `results.tex` (có khoảng tin cậy 95%), sau đó build lại. File CSV đã được đưa vào `.gitignore` vì chứa dữ liệu cá nhân. Sau khi có số, viết 3-4 câu ở mục B.5. Nếu nhóm không làm khảo sát, nên bỏ Appendix B (hoặc ghi rõ "chưa thực hiện") thay vì để bảng trống.
+- **Appendix C (photochromic):** cơ chế SP ⇄ MC, ý nghĩa với Uvie, kế hoạch đo đặc tính (chưa đo gì).
+- **Appendix D (future work):** ý tưởng phòng thí nghiệm ảo với chemical ontology (3 tầng: ontology, knowledge graph, mô hình dự đoán) và lộ trình 4 giai đoạn. Chỉ là ý tưởng, không nằm trong MVP hay dự báo tài chính.
+- Nguồn mới: Klajn 2014, Hastings 2016 (ChEBI), Abolhasani & Kumacheva 2023, Tom et al. 2024, Lo et al. 2024, Bai et al. 2024, Schilling et al. 2026. Nhờ kiểm tra lại số trang/tập của Bai 2024 và Schilling 2026 (mình chưa xác nhận được thông tin đầy đủ).
+- Nên khai báo thêm AI cho các phụ lục này trong Appendix A.

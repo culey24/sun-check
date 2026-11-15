@@ -1,0 +1,83 @@
+% Appendix C - Photochromic background
+\section{Photochromic Materials: Background for the Patch}\label{app:photochromic}
+
+This appendix explains, in simple terms, how the patch changes color and what that means
+for Uvie. It is background for the prototype in Section~\ref{sec:prototype} and for the risks in
+Section~\ref{sec:business-model}. It does not report new experiments.
+
+\subsection{What Photochromism Is}
+Photochromism is a reversible change in a material's light absorption, and therefore its color,
+that is triggered by light. Several families of molecules behave this way, for example
+spiropyrans, spirooxazines, azobenzenes, and diarylethenes. Spiropyrans are among the most
+widely studied of these, and have become a molecule of choice for building responsive materials
+\cite{klajn2014}.
+
+\subsection{How a Spiropyran Changes Color}
+A spiropyran has two forms (Figure~\ref{fig:photochromic}). In its closed form (SP) it is almost
+colorless. Ultraviolet light, around 365\,nm in laboratory work, breaks one bond in the molecule and
+opens the ring, which produces the colored merocyanine form (MC). The ring-opening follows
+first-order kinetics. The reverse reaction happens again in the dark, driven by heat, and visible light
+can speed it up \cite{klajn2014}. This is why a patch that turns dark in the sun slowly lightens
+once the UV is gone.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      st/.style={draw, rounded corners, minimum width=4.6cm, minimum height=1.5cm,
+                 align=center, font=\small},
+      >=Stealth]
+    \node[st, fill=white] (sp) {\textbf{Closed form (SP)}\\almost colorless};
+    \node[st, fill=violet!35, right=3.4cm of sp] (mc) {\textbf{Open form (MC)}\\colored};
+    \draw[->, thick] ([yshift=0.25cm]sp.east) -- node[above, font=\small] {UV light} ([yshift=0.25cm]mc.west);
+    \draw[->, thick] ([yshift=-0.25cm]mc.west) -- node[below, font=\small, align=center] {heat or\\visible light} ([yshift=-0.25cm]sp.east);
+  \end{tikzpicture}
+  \caption{Reversible color change of a spiropyran (simplified; after \cite{klajn2014}).}
+  \label{fig:photochromic}
+\end{figure}
+
+\subsection{What This Means for Uvie}
+The mechanism explains both the strengths and the weak points of the patch.
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{It reacts to UV, not to sunscreen.} The color change is caused by UV reaching the
+    molecule. A patch under sunscreen darkens more slowly only if the sunscreen blocks enough UV.
+    In a laboratory test of ten commercial photochromic indicators, the devices changed color within
+    about a minute at UV index 10 even under SPF 50+ sunscreen, and their color saturated at moderate
+    UV levels \cite{aguilera2024}. A dark patch should therefore prompt the user to check and reapply,
+    and it should not be read as a precise measure of remaining protection.
+  \item \textbf{It fades again.} Because the colored form returns to the closed form on its own, the
+    patch state depends on time and temperature as well as UV. How fast this happens in the warm
+    Vietnamese climate has to be measured for our own formulation.
+  \item \textbf{The host material matters.} In a solid patch the molecules are embedded in a matrix,
+    which may influence speed and color contrast. The ink and the patch base are therefore part of
+    the design, and their effect has to be tested.
+\end{itemize}
+
+\subsection{Characterization Plan}
+Table~\ref{tab:photochromic-plan} lists what we need to measure before making any claim about the
+patch. None of these measurements has been completed yet.
+
+\begin{table}[ht]
+\centering\small
+\caption{Planned characterization of the photochromic patch}\label{tab:photochromic-plan}
+\begin{tabular}{@{}L{3.6cm}L{6.4cm}L{4.1cm}@{}}
+  \toprule
+  \textbf{Property} & \textbf{How to measure it} & \textbf{Why it matters}\\
+  \midrule
+  Response time & Time to reach a set luminance drop under a UV lamp or measured sunlight & Sets how soon the app can warn\\
+  \addlinespace
+  Saturation & Luminance at increasing UV index values & Shows where the patch stops distinguishing levels\\
+  \addlinespace
+  Fade time & Time to return to the light state in shade and in warm conditions & Defines how long a reading stays valid\\
+  \addlinespace
+  Effect of sunscreen & Same test with no sunscreen and with several SPF levels & Tests the central claim of the product\\
+  \addlinespace
+  Repeatability & Several light--dark cycles on the same patch & Shows whether the patch ages\\
+  \addlinespace
+  Skin safety & Review of pigment, solvent, and adhesive by a laboratory & Needed before use on skin\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+For the phone measurement, each patch should be photographed with the same phone, distance, and
+lighting, and the average luminance of the central area recorded. These values would replace the
+first-estimate threshold of 120 used by the app (Figure~\ref{fig:confidence}).

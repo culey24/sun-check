@@ -9,3 +9,7 @@
 *.xdv
 *.synctex.gz
 main.pdf
+
+# Raw survey responses may contain personal data - never commit them
+tex/survey/*.csv
+survey/*.csv
