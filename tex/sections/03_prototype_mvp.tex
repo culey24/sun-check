@@ -87,7 +87,25 @@ The app has four screens that follow the user's natural order of actions
   \label{fig:flow}
 \end{figure}
 
-% TODO (Tai / Chi): replace or complement Figure 3.2 with real screenshots of the four screens.
+Figure~\ref{fig:screens} shows screenshots of the running web app on a phone. They show the Home,
+Scan, and History screens. The Scan screenshot was taken on a device where camera access was
+not available, so it shows the error message and the demo buttons instead of a live camera view.
+A screenshot of the Result screen is still to be added.
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}[t]{0.3\textwidth}\centering
+    \fbox{\includegraphics[width=\textwidth]{assets/web-1.png}}\\[2pt]\small (a) Home
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.3\textwidth}\centering
+    \fbox{\includegraphics[width=\textwidth]{assets/web-2.png}}\\[2pt]\small (b) Scan (camera unavailable)
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.3\textwidth}\centering
+    \fbox{\includegraphics[width=\textwidth]{assets/web-3.png}}\\[2pt]\small (c) History (empty)
+  \end{minipage}
+  \caption{Screenshots of the Uvie web app (current MVP build).}
+  \label{fig:screens}
+\end{figure}
 
 Table~\ref{tab:mvp-features} lists the functional requirements from the product
 specification and shows how each one is met in the current build.
@@ -320,19 +338,19 @@ patches.
 \begin{table}[ht]
 \centering\small
 \caption{Testing plan and status}\label{tab:tests}
-\begin{tabular}{@{}L{3.4cm}L{6.0cm}L{2.0cm}L{2.5cm}@{}}
+\begin{tabular}{@{}L{3.1cm}L{5.2cm}L{1.8cm}L{4.2cm}@{}}
   \toprule
   \textbf{Test} & \textbf{Method} & \textbf{Status} & \textbf{Result}\\
   \midrule
-  App flow & Walk through Home, Scan, Result, and History using demo light and dark frames & Done & TODO\\
+  App flow & Walk through Home, Scan, Result, and History using demo light and dark frames & Done & Home, Scan, and History screens load and navigate (Figure~\ref{fig:screens}); Result screenshot to be added\\
   \addlinespace
-  Patch bench test & Sunscreen on the patch, then UV lamp or sunlight, then wipe off & Planned & TODO\\
+  Patch bench test & Sunscreen on the patch, then UV lamp or sunlight, then wipe off & Planned & Not yet run\\
   \addlinespace
-  Threshold tuning & Photograph light and dark patches indoors, in shade, and in direct sun, then compare the luminance values & Planned & TODO\\
+  Threshold tuning & Photograph light and dark patches indoors, in shade, and in direct sun, then compare the luminance values & Planned & Not yet run\\
   \addlinespace
-  Sunscreen types and SPF & Repeat the bench test with several SPF levels and sweat or water exposure & Planned & TODO\\
+  Sunscreen types and SPF & Repeat the bench test with several SPF levels and sweat or water exposure & Planned & Not yet run\\
   \addlinespace
-  User test & Give patches to a small group of students to use for one outdoor day, then ask about clarity and trust & Planned & TODO\\
+  User test & Give patches to a small group of students to use for one outdoor day, then ask about clarity and trust & Planned & Not yet run\\
   \bottomrule
 \end{tabular}
 \end{table}
