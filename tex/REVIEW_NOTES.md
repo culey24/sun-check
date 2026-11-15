@@ -19,7 +19,7 @@ Hiện tại: PDF 43 trang; phần nội dung chính (Section 1–6) nằm ở t
 ## 2. Việc cần người của nhóm điền (TODO trong bài)
 
 - **Bìa:** `INSTRUCTOR`, `CLASS`, `GROUP` trong `main.tex` vẫn là `TODO`.
-- **Section 3:** ảnh chụp màn hình 4 trang của app (Hình 3.1 hiện là sơ đồ minh họa), ảnh patch thật (sáng, tối, trên da), cột **Result** của Bảng 3.5 (các bài test).
+- **Section 3:** ảnh chụp màn hình 4 trang của app (Hình 3.2 hiện là sơ đồ minh họa), ảnh patch thật (sáng, tối, trên da), cột **Result** của Bảng 3.5 (các bài test).
 - **Số miếng patch trong mỗi gói chưa chốt** (Section 2 và 6 cũng ghi như vậy). Section 5 có nhắc "to be fixed after supplier tests".
 - **Section 5:** conversion rate, repeat-purchase rate, scan frequency, mức ưu đãi (starter offer, bundle, referral) đang để "to be set" vì chưa có số liệu. Mình không tự bịa số.
 - **Section 5/6:** chưa có bảng chia ngân sách marketing theo kênh (TikTok, Shopee, KOL, sự kiện). Chỉ có tổng 360 / 600 / 1.000 triệu VND từ Section 6.
@@ -59,3 +59,10 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - **Appendix D (future work):** ý tưởng phòng thí nghiệm ảo với chemical ontology (3 tầng: ontology, knowledge graph, mô hình dự đoán) và lộ trình 4 giai đoạn. Chỉ là ý tưởng, không nằm trong MVP hay dự báo tài chính.
 - Nguồn mới: Klajn 2014, Hastings 2016 (ChEBI), Abolhasani & Kumacheva 2023, Tom et al. 2024, Lo et al. 2024, Bai et al. 2024, Schilling et al. 2026. Nhờ kiểm tra lại số trang/tập của Bai 2024 và Schilling 2026 (mình chưa xác nhận được thông tin đầy đủ).
 - Nên khai báo thêm AI cho các phụ lục này trong Appendix A.
+
+## 8. Cập nhật từ báo cáo cũ (UVie.docx)
+
+- Đã thêm mục **Product Concept** và **Hình 3.1** (ảnh minh họa patch trên tay + app) vào Section 3. Ảnh này trông như **ảnh do AI tạo** (có dấu ngôi sao 4 cánh ở góc dưới phải) và giao diện trong ảnh không giống app thật, nên chú thích ghi rõ là "ảnh minh họa, không phải ảnh sản phẩm hoàn chỉnh". Nếu đúng là AI tạo, **cần khai báo trong Appendix A** (công cụ, người dùng, mục đích) và nên thay bằng ảnh patch thật khi có.
+- Báo cáo cũ ghi app dùng **Machine Learning**, nhưng code hiện tại chỉ là ngưỡng độ sáng (luminance 120). Bài mới mô tả đúng theo code. Hoặc nhóm làm thật phần ML, hoặc giữ cách mô tả hiện tại.
+- Báo cáo cũ ghi **push notification tự động**; MVP hiện chưa có (chỉ trả lời khi quét). Bài mới ghi đây là tầm nhìn đầy đủ.
+- Thuật ngữ: báo cáo cũ dùng "stamp", "mobile application". Bài mới dùng "patch" và "web app".

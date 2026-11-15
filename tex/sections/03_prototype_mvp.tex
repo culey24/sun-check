@@ -6,6 +6,27 @@
 %====================================================================
 \subsection{Prototype / MVP Demonstration}
 
+\subsubsection{Product Concept}
+Uvie brings together two fields. \emph{Chemical engineering} supplies the patch: safe
+photochromic pigment mixed into a medical-grade gel and coated onto a hypoallergenic hydrocolloid
+or silicone base to form a UV-sensitive sticker. \emph{Computer science} supplies the app, which
+uses the phone camera to read the color of the patch.
+
+The user sticks the patch on the skin and spreads sunscreen over both the skin and the patch.
+As the sunscreen wears off through sweat, friction, or time, UV reaches the patch and it changes
+color. The user scans the patch, and the app tells them to reapply (Figure~\ref{fig:concept-image}).
+In the full vision, the app would also send a push notification; the MVP described below answers
+only when the user scans.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/fig3-0_uvie_concept.png}
+  \caption{Concept illustration of the Uvie patch on the forearm and the app scanning it. This is
+  an illustrative image and not a photograph of a finished product. The interface shown is a design
+  concept and differs from the MVP screens in Figure~\ref{fig:flow}.}
+  \label{fig:concept-image}
+\end{figure}
+
 \subsubsection{What the MVP Is}
 Uvie's minimum viable product has two parts that work together. The first is a
 UV-sensitive photochromic patch that stays light while sunscreen blocks UV and
@@ -66,7 +87,7 @@ The app has four screens that follow the user's natural order of actions
   \label{fig:flow}
 \end{figure}
 
-% TODO (Tai / Chi): replace or complement Figure 3.1 with real screenshots of the four screens.
+% TODO (Tai / Chi): replace or complement Figure 3.2 with real screenshots of the four screens.
 
 Table~\ref{tab:mvp-features} lists the functional requirements from the product
 specification and shows how each one is met in the current build.
