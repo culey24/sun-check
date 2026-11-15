@@ -80,3 +80,9 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - Nhóm cần chốt: dùng API nào (Open-Meteo hay khác), mô hình ML cụ thể, và có kịp làm trước hạn nộp không. Nếu kịp làm thật, hãy sửa mục này thành "đã làm" kèm kết quả đo; nếu không, giữ nguyên là kế hoạch.
 - Open-Meteo cần API key khi dùng thương mại (theo trang tài liệu); cần kiểm tra điều khoản/chi phí trước khi bán.
 - Các chỗ khác trong báo cáo vẫn nói đúng hiện trạng là heuristic.
+
+## 11. Appendix A: dòng NHÁP để từng thành viên đối chiếu
+
+- Mỗi thành viên có 1–2 dòng **màu đỏ [DRAFT]** gắn với đúng mục họ phụ trách (theo trang 2). Đây chỉ là khung để đối chiếu, **không phải sự thật**.
+- Mỗi người phải: (1) điền tool thực tế (Claude / Gemini / ChatGPT / khác), (2) thay prompt nháp bằng prompt thật, hoặc (3) xóa dòng nếu không dùng AI. Xóa hết chữ đỏ trước khi nộp.
+- Cột tool cố ý để `[CONFIRM]`, không điền sẵn tên tool.
