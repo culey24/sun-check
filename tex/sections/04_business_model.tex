@@ -72,7 +72,7 @@ earns money, and what could make the model fail.
       $\bullet$ Fixed: team, marketing, R\&D, legal and testing, app hosting and maintenance, depreciation};
     % Revenue Streams
     \node[blk, minimum height=2.5cm, text width=7.45cm] at (2.5*\w,-7.3) {\textbf{Revenue Streams}\\[2pt]
-      $\bullet$ Sale of patch packages at a list price of VND 89,000 (repeat purchase about three times a year)\\
+      $\bullet$ Sale of patch packages at a list price of VND 89,000 (about 1.6 packages per customer per year)\\
       $\bullet$ The scanning app is free and is not a revenue source in the forecast};
   \end{tikzpicture}
   \caption{Business Model Canvas of Uvie.}
@@ -154,9 +154,9 @@ unit economics used throughout this report.
   Direct cost (materials, processing, packaging, inspection) & 34,000\\
   Gross profit per package & 55,000\\
   Gross margin & 61.8\%\\
-  Purchases per customer per year (assumption) & 3\\
+  Packages per customer per year (assumption, base case) & 1.6\\
   Customer lifetime (assumption) & 2 years\\
-  Customer lifetime value (55,000 $\times$ 3 $\times$ 2) & 330,000\\
+  Customer lifetime value (55,000 $\times$ 1.6 $\times$ 2) & 176,000\\
   Customer acquisition cost, Year 1 $\to$ Year 3 & 30,000 $\to$ 16,667\\
   \bottomrule
 \end{tabular}
@@ -166,7 +166,9 @@ Two things stand out. The price is low in absolute terms but leaves a margin hig
 enough to pay for marketing, and the model depends heavily on repeat purchase:
 a customer who buys once returns only VND 55,000 of gross profit against an
 acquisition cost of VND 30,000 in Year 1. Repeat purchase is therefore the number to
-watch.
+watch. The base case of 1.6 packages per customer per year is the average implied by the sales
+volumes in Section~\ref{sec:financial}; if customers bought three packages a year, the lifetime
+value would rise to VND 330,000, which we treat as an upside case and not as the plan.
 
 Our small survey of 40 people gives a first check on the price (Appendix~\ref{app:survey}).
 About 45.0\% said they would pay VND 89,000 or more per package, 47.5\% were likely to buy at
@@ -234,7 +236,7 @@ to do about it.
   \midrule
   The patch does not track sunscreen wear-off reliably & Laboratory work shows photochromic devices can react quickly even under SPF 50+ at high UV \cite{aguilera2024}; unreliable signals would destroy trust & Test our patches under Vietnamese UV levels and with several SPF values; present Uvie as a reminder, not a dosimeter\\
   \addlinespace
-  Low repeat purchase & LTV depends on three packages per year & Track cohorts early; add bundles and refill reminders\\
+  Low repeat purchase & LTV depends on about 1.6 packages per year & Track cohorts early; add bundles and refill reminders\\
   \addlinespace
   Regulatory classification is unclear & A skin-contact product may need notification or testing; cosmetics, for example, must be notified to the health authority before sale \cite{circular06,mondaq2025} & Confirm the category with a legal adviser before launch; budget is in the legal and testing line\\
   \addlinespace
