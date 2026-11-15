@@ -20,15 +20,30 @@ npm run preview  # serve the production build
 npm run typecheck
 ```
 
+Or use the Makefile: `make install`, `make dev`, `make build`, `make preview`,
+`make typecheck`, `make samples`, `make clean` (`make help` lists them).
+
 ## MVP behavior
 
-- **Home** — value prop and entry point.
-- **Scan** — live camera with a circular sticker guide; if no camera is available,
-  use the **Demo: light** / **Demo: dark** buttons to run the pipeline on a
-  synthetic frame.
+- **Home** — value prop, entry point, and the **local UV index** for Ho Chi Minh City
+  (live from [Open-Meteo](https://open-meteo.com), no API key): current value and WHO
+  level, hourly chart, today's peak, and a warning when UV is high (≥ 6) or will be
+  later today. Refreshes every 15 minutes; the last reading is cached for offline use.
+  To test the warnings at night, open any page with `?uv=9` (stays on for the tab;
+  `?uv=off` resets).
+- **Scan** — live camera with a circular sticker guide. Under **Test with sample
+  photos**, pick a photo of the sticker on a hand (fresh → fully dark) to show it in
+  the viewfinder, then tap **Capture** to run the real analysis on it.
 - **Result** — shows the detected state, sampled color, and confidence; shows a
   prominent reapply alert when the sticker is dark.
-- **History** — recent scans stored locally in the browser.
+- **History** — recent scans stored locally in the browser. When empty, **Load sample
+  data** fills it with a day of example scans.
+
+### Sample photos
+
+`public/samples/*.jpg` are rendered by `scripts/generate_sample_photos.py`
+(Python 3 + Pillow + NumPy). Re-run it to regenerate them; it prints the center
+luminance each photo will measure (threshold: 120).
 
 Analysis is a heuristic (average luminance of the frame center) and is intended to
 be replaced by real photochromic color detection later.
