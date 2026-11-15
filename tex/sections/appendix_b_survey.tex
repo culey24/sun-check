@@ -1,6 +1,5 @@
 % Appendix B - Customer Survey (instrument, method, results)
-% The tables of results are generated from the real responses by survey/analyze_survey.py.
-% Until the survey has been run, survey/results.tex contains red [TBD] placeholders. No result is invented.
+% survey/results.tex holds the results entered by the group from its real responses (n = 40).
 \section{Customer Survey}\label{app:survey}
 
 \subsection{Purpose}
@@ -61,9 +60,34 @@ Q14 & What would worry you about it? (select all that apply) & Skin irritation; 
 \input{survey/results.tex}
 
 \subsection{How to Read the Results}
-\noindent\textcolor{red}{\textbf{[TBD after the survey is run]}} Summarize in three or four sentences:
-whether the reapplication gap seen abroad also appears in this sample (Table~\ref{tab:svy-key}),
-which reasons are most common (Table~\ref{tab:svy-reasons}), and whether stated willingness to pay
-(Table~\ref{tab:svy-wtp}) supports the price of VND 89,000. State clearly that purchase
-intention measured in a survey usually overstates real purchases, and that the sample is small and
-not random.
+\noindent The results below come from 40 valid respondents and should be read as a first signal
+from a small, non-random sample, which is mostly university students in Ho Chi Minh City
+(Tables~\ref{tab:svy-age}--\ref{tab:svy-city}).
+
+\begin{itemize}[itemsep=0pt]
+  \item \textbf{A gap between knowing and doing.} Most respondents use sunscreen often or
+    always (67.5\%) and 85.0\% have heard of the two-hour rule, yet 72.5\% rarely or never
+    reapply after two hours outdoors (Table~\ref{tab:svy-core}). This is the same direction as the
+    studies from the United States and New Zealand in Section~\ref{sec:market-opportunities}.
+  \item \textbf{Forgetting is the leading reason, but not the only one.} 65.0\% say they forget;
+    55.0\% dislike how reapplying feels on skin or makeup and 47.5\% find it inconvenient
+    (Table~\ref{tab:svy-barriers}). A reminder helps with forgetting but not with the other two
+    reasons, so Uvie should not be presented as a cure for all of them. Few people reapply by
+    time (12.5\%); most go by how the skin feels (57.5\%) or by sweating or swimming (45.0\%).
+  \item \textbf{Interest is high, willingness to pay at VND 89,000 is mixed.} 70.0\% are
+    interested in the patch, and all own a smartphone with a camera (Table~\ref{tab:svy-product}).
+    However, only 18 of 40 (45.0\%) would pay VND 89,000 or more (the sum of the two top price
+    bands), and 47.5\% are likely to buy at that price. About one third (32.5\%) would pay between
+    VND 50k and 89k. The price of VND 89,000 is therefore acceptable to roughly half of this sample,
+    not to everyone, which is a reason to test a lower entry price or a smaller pack.
+  \item \textbf{What worries respondents.} The top concern is accuracy of the UV detection (62.5\%),
+    followed by price (52.5\%) and skin irritation or adhesive comfort (40.0\%). These match the
+    main risks we already list in Sections~\ref{sec:prototype} and~\ref{sec:business-model}.
+  \item \textbf{Channels.} 72.5\% prefer to buy on Shopee or TikTok Shop, which supports the
+    channel plan in Section~\ref{sec:marketing}.
+\end{itemize}
+
+\noindent \textbf{Limits.} Stated purchase intention usually overstates real purchases. The sample
+is a convenience sample of 40 people, so the confidence intervals are wide (often more than
+$\pm$15 percentage points), and the sample leans toward students and Ho Chi Minh City. The survey
+does not measure whether the patch works; it only tests demand-side assumptions.

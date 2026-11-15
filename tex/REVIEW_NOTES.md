@@ -86,3 +86,11 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - Mỗi thành viên có 1–2 dòng **màu đỏ [DRAFT]** gắn với đúng mục họ phụ trách (theo trang 2). Đây chỉ là khung để đối chiếu, **không phải sự thật**.
 - Mỗi người phải: (1) điền tool thực tế (Claude / Gemini / ChatGPT / khác), (2) thay prompt nháp bằng prompt thật, hoặc (3) xóa dòng nếu không dùng AI. Xóa hết chữ đỏ trước khi nộp.
 - Cột tool cố ý để `[CONFIRM]`, không điền sẵn tên tool.
+
+## 12. Kết quả khảo sát (n = 40) đã đưa vào báo cáo
+
+- `survey/results.tex` giờ là **số liệu do nhóm cung cấp** (42 phản hồi, loại 2 "Under 18", còn 40). `analyze_survey.py` không còn là nguồn của file này (chạy lại sẽ ghi đè bằng bảng khác).
+- Đã kiểm tra lại toàn bộ khoảng tin cậy Wilson 95%: khớp với số đếm.
+- Đã cập nhật cho thống nhất: B.5 (phần diễn giải), Section 1 (giới hạn + danh sách giả định), Section 4 (nhận xét về giá), Section 5 (kênh bán).
+- **Điểm cần chú ý:** chỉ 45,0% (18/40) chịu trả từ 89.000đ trở lên và 47,5% có khả năng mua ở mức giá này. Báo cáo ghi giá 89.000đ là "giả thuyết cần kiểm tra", không phải đã được xác nhận. Nếu nhóm muốn giữ giá, cần lập luận khác; nếu hạ giá, phải sửa Section 4, 5, 6 và LTV/CAC.
+- Khảo sát không đo tần suất mua lại, nên giả định "3 gói/năm" trong LTV vẫn chưa được kiểm chứng.
