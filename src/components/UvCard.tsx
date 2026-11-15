@@ -24,7 +24,7 @@ function HourlyChart({ forecast }: { forecast: UvForecast }) {
         {hours.map(({ hour, uv }) => {
           const isNow = hour === forecast.currentHour;
           return (
-            <div key={hour} className="flex flex-1 flex-col items-center justify-end">
+            <div key={hour} className="flex h-full flex-1 flex-col justify-end">
               <div
                 className={[
                   'w-full rounded-t-sm',
