@@ -3,6 +3,13 @@
 Records every change to a number or assumption that appears in more than one section, so that the
 sections stay consistent. Dates use Asia/Ho_Chi_Minh time. Newest first.
 
+## 2026-11-15 - NPV sensitivity table added (Section 6.6.3)
+
+No existing number changed. Added Table 6.11: NPV and IRR when volume, price, unit cost, marketing budget
+or discount rate change one at a time, computed from the Section 6 free cash flows (base NPV 36.2, IRR 19.3%).
+NPV reaches zero at volume -0.7%, price -0.4% or unit cost +1.2%. Simplified: tax 20% of positive EBIT,
+marketing budgets fixed, depreciation, capex and working capital unchanged.
+
 ## 2026-11-15 - LTV aligned with sales volumes (commit `d35ebe8`)
 
 **Why.** Sections 4 and 6 computed customer lifetime value (LTV) with 3 packages per customer per

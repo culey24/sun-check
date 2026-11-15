@@ -387,6 +387,45 @@ VND 36.2 million. A relatively small decline in sales volume or increase in unit
 cost or marketing expenditure could make NPV negative.
 
 \subsubsection{Sensitivity and Risk Analysis}
+To see how fragile the result is, we changed one assumption at a time and recalculated NPV and IRR
+from the cash flows in Table~\ref{tab:fcff} (Table~\ref{tab:sens}). In this simplified test, tax is 20\%
+of positive EBIT, the marketing budgets of Section~\ref{sec:marketing} stay fixed, and depreciation,
+capital expenditure and working capital do not change. Working capital would in fact move with sales
+volume, so the results show the direction and rough size of each effect and not exact values.
+
+\begin{table}[ht]
+\centering\small
+\caption{Sensitivity of NPV and IRR to single changes (discount rate 18\% unless stated)}\label{tab:sens}
+\begin{tabular}{@{}L{6.4cm}rr@{}}
+  \toprule
+  \textbf{Change} & \textbf{NPV (VND million)} & \textbf{IRR}\\
+  \midrule
+  Base case & 36.2 & 19.3\%\\
+  \addlinespace
+  Sales volume $-10\%$ & $-473.5$ & 0.3\%\\
+  Sales volume $-20\%$ & $-983.2$ & $-21.4\%$\\
+  Sales volume $+10\%$ & 545.9 & 36.5\%\\
+  \addlinespace
+  Selling price $-5\%$ (VND 84,550) & $-376.2$ & 4.1\%\\
+  Selling price $-10\%$ (VND 80,100) & $-788.6$ & $-12.6\%$\\
+  \addlinespace
+  Unit cost $+10\%$ (VND 37,400) & $-278.9$ & 7.8\%\\
+  Marketing budget $+20\%$ & $-191.2$ & 11.2\%\\
+  \addlinespace
+  Discount rate 15\% & 127.6 & 19.3\%\\
+  Discount rate 20\% & $-19.7$ & 19.3\%\\
+  Discount rate 25\% & $-143.8$ & 19.3\%\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+NPV turns negative with a sales volume lower by only 0.7\%, a selling price lower by 0.4\%, or a unit
+cost higher by 1.2\%. The result is therefore very sensitive, and it is most sensitive to sales volume
+and price. This links to the survey in Appendix~\ref{app:survey}: only 45.0\% of respondents said they
+would pay VND 89,000 or more, so the price assumption is the one most worth testing. Because the project
+is this close to break-even on NPV, we do not claim that it is financially viable, only that it
+\emph{may} be under the base case.
+
 \begin{table}[ht]
 \centering\small
 \caption{Key risk factors and mitigation}\label{tab:risk}
