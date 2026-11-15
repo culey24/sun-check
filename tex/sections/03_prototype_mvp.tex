@@ -36,7 +36,8 @@ that a person can look at a patch, scan it, and get a clear ``reapply'' signal.
 The web app is live at \href{https://sun-check.onrender.com}{sun-check.onrender.com}
 and its source code is in the project repository. It is built with React, Vite,
 TypeScript, and Tailwind CSS, and it is hosted as a static site, so it needs no
-server and no installation. Camera access requires HTTPS, which the hosting
+server of its own and no installation. The only outside service it calls is a free UV index
+service (Open-Meteo). Camera access requires HTTPS, which the hosting
 provider supplies by default.
 
 \subsubsection{Digital Prototype: The Uvie Web App}
@@ -85,24 +86,41 @@ The app has four screens that follow the user's natural order of actions
   \label{fig:flow}
 \end{figure}
 
-Figure~\ref{fig:screens} shows screenshots of the running web app on a phone. They show the Home,
-Scan, and History screens. The Scan screenshot was taken on a device where camera access was
-not available, so it shows the error message and the demo buttons instead of a live camera view.
-A screenshot of the Result screen is still to be added.
+Figure~\ref{fig:screens} shows screenshots of the running web app on a phone, and
+Figure~\ref{fig:results} shows the two possible results. The Home screen now includes a local UV
+index card, explained below. The Scan screenshot shows a sample photo loaded into the viewfinder
+instead of the live camera. These sample photos are images rendered by a script in the repository, not
+photographs of real patches, so they check that the app works from start to finish and do not
+measure its accuracy. The screenshots were taken in the evening at 19:30, which is why the UV card
+reads ``Sun is down'' (UV 0) while still showing today's hourly forecast.
 
 \begin{figure}[ht]
   \centering
   \begin{minipage}[t]{0.3\textwidth}\centering
-    \fbox{\includegraphics[width=\textwidth]{assets/web-1.png}}\\[2pt]\small (a) Home
+    {\setlength{\fboxsep}{0pt}\fbox{\includegraphics[width=\dimexpr\linewidth-0.8pt\relax]{assets/web-1.png}}}\\[2pt]\small (a) Home with UV index
   \end{minipage}\hfill
   \begin{minipage}[t]{0.3\textwidth}\centering
-    \fbox{\includegraphics[width=\textwidth]{assets/web-2.png}}\\[2pt]\small (b) Scan (camera unavailable)
+    {\setlength{\fboxsep}{0pt}\fbox{\includegraphics[width=\dimexpr\linewidth-0.8pt\relax]{assets/web-2.png}}}\\[2pt]\small (b) Scan with a sample photo
   \end{minipage}\hfill
   \begin{minipage}[t]{0.3\textwidth}\centering
-    \fbox{\includegraphics[width=\textwidth]{assets/web-3.png}}\\[2pt]\small (c) History (empty)
+    {\setlength{\fboxsep}{0pt}\fbox{\includegraphics[width=\dimexpr\linewidth-0.8pt\relax]{assets/web-3.png}}}\\[2pt]\small (c) History
   \end{minipage}
-  \caption{Screenshots of the Uvie web app (current MVP build).}
+  \caption{Screenshots of the Uvie web app (current MVP build). The scans in (c) were made from the
+  four sample photos.}
   \label{fig:screens}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}[t]{0.3\textwidth}\centering
+    {\setlength{\fboxsep}{0pt}\fbox{\includegraphics[width=\dimexpr\linewidth-0.8pt\relax]{assets/result-good.png}}}\\[2pt]\small (a) Protected
+  \end{minipage}\hspace{1.2cm}
+  \begin{minipage}[t]{0.3\textwidth}\centering
+    {\setlength{\fboxsep}{0pt}\fbox{\includegraphics[width=\dimexpr\linewidth-0.8pt\relax]{assets/result-bad.png}}}\\[2pt]\small (b) Reapply
+  \end{minipage}
+  \caption{Result screen for a light patch (a) and a dark patch (b), using the ``Fresh'' and
+  ``Fully dark'' sample photos.}
+  \label{fig:results}
 \end{figure}
 
 Table~\ref{tab:mvp-features} lists the functional requirements from the product
@@ -125,7 +143,9 @@ specification and shows how each one is met in the current build.
   \addlinespace
   FR-5 & Keep a basic local history of scans & History screen, stored in the browser only\\
   \addlinespace
-  FR-6 & Work with mock data when no camera is available & ``Demo: light'' and ``Demo: dark'' buttons run the same analysis on a synthetic frame\\
+  FR-6 & Work with test data when no camera or real patch is available & Four sample photos (fresh to fully dark) can be loaded into the viewfinder and analyzed by the same code as a live capture; a ``Load sample data'' button fills the History with a day of example scans\\
+  \addlinespace
+  FR-7 & Show the local UV index and use it in the advice & Home shows the current UV index and level (World Health Organization scale), an hourly chart, today's peak, and a warning when UV is high now or later today; Scan and Result show a short UV label, and Result suggests when to scan again\\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -156,7 +176,7 @@ try. Figure~\ref{fig:pipeline} shows how one scan moves through the app.
 \end{figure}
 
 Table~\ref{tab:modules} lists the main parts of the code, which is written in TypeScript and is
-under 1,000 lines in total.
+about 1,500 lines in total.
 
 \begin{table}[ht]
 \centering\small
@@ -177,7 +197,9 @@ under 1,000 lines in total.
   \addlinespace
   History & Saves up to 50 results in the browser's local storage and ignores storage errors\\
   \addlinespace
-  Sample frame & Draws a synthetic light or dark frame for the demo buttons, which pass through the same analyzer\\
+  UV service and card & Fetches today's UV index for Ho Chi Minh City, converts it to a level and advice, draws the hourly chart and warnings, and keeps the last reading for 15 minutes\\
+  \addlinespace
+  Sample data & Four sample sticker photos and an example scan history for testing; the photos pass through the same analyzer\\
   \bottomrule
 \end{tabular}
 \end{table}
@@ -186,6 +208,36 @@ The interface is built with React and styled with Tailwind CSS; Vite builds the 
 published as a static site on Render: each push to the main branch triggers the build
 (\texttt{npm ci} and \texttt{npm run build} on Node 22), the site falls back to the home page for any
 route so that client-side routing works, and the generated asset files are cached for a long time.
+
+\paragraph{UV index feature.}
+Besides scanning, the app calls the Open-Meteo forecast service directly from the browser
+\cite{openmeteo2026}. It asks for the current UV index, whether it is daytime, the hourly UV index,
+and today's maximum, for the coordinates of Ho Chi Minh City (the MVP uses one fixed location).
+The app then turns the number into a level on the World Health Organization scale (low, moderate,
+high, very high, extreme) and draws the hourly chart. A warning appears when the UV index is 6 or
+higher now, or will be later today. The same level sets a suggested interval for scanning again
+(Table~\ref{tab:uvlevels}). The reading is refreshed every 15 minutes, which is how often the service
+updates, and the last reading is kept in the browser so that it still shows if the network fails.
+A test option (adding \texttt{?uv=9} to the address) pretends a given UV index so that warnings can
+be checked at night or on a cloudy day.
+
+\begin{table}[ht]
+\centering\small
+\caption{UV levels used by the app and the suggested time between scans}\label{tab:uvlevels}
+\begin{tabular}{@{}L{3.4cm}L{2.6cm}L{4.2cm}@{}}
+  \toprule
+  \textbf{Level} & \textbf{UV index} & \textbf{Suggested scan interval}\\
+  \midrule
+  Low & 0--2 & No reminder\\
+  Moderate & 3--5 & Every 120 minutes\\
+  High & 6--7 & Every 90 minutes\\
+  Very high & 8--10 & Every 60 minutes\\
+  Extreme & 11 and above & Every 45 minutes\\
+  \bottomrule
+\end{tabular}
+\end{table}
+The level boundaries follow the World Health Organization scale. The scan intervals are our own design
+choice and have not been validated, so they should be read as suggestions and not as medical advice.
 
 \subsubsection{Recognition Algorithm}
 The app does not use machine learning. It applies a fixed rule to the color of the patch, which is
@@ -227,7 +279,8 @@ possible later step; the current rule is a baseline to compare it with.
 
 \paragraph{Privacy by design.} The analysis runs entirely in the user's browser.
 Captured frames are not uploaded, and the scan history is stored only in the
-browser's local storage. This keeps the MVP simple and avoids collecting images of
+browser's local storage. The only outside request is the UV forecast, which sends fixed city
+coordinates and no personal data. This keeps the MVP simple and avoids collecting images of
 users' skin, which is a sensitive issue for a product worn on the body.
 
 \subsubsection{Physical Prototype: The UV-Sensitive Patch}
@@ -302,9 +355,11 @@ records those decisions and the reason for each.
   \midrule
   Camera scan and Protected/Reapply result & In MVP & Core of the value proposition\\
   Local scan history & In MVP & Lets users and testers see the pattern over a day\\
-  Demo mode without a camera & In MVP & Makes the product demonstrable anywhere, including during evaluation\\
+  Sample photos and sample history & In MVP & Makes the product demonstrable anywhere, including during evaluation\\
+  Local UV index for one city (Ho Chi Minh City) & In MVP & Cheap to build with a free service and gives context to the scan\\
+  UV index at the user's own location & Deferred & Needs location permission and a privacy design\\
   Real photochromic color analysis & Deferred & Needs real patches and test data to set reliable thresholds\\
-  Push notifications and reminder scheduling & Deferred & A browser app cannot rely on background alerts; needs a design decision\\
+  Push notifications and reminder scheduling & Deferred & A browser app cannot rely on background alerts; the app only suggests when to scan again\\
   User accounts and cloud sync & Deferred & Not needed to prove the core idea; adds privacy obligations\\
   Native mobile apps & Deferred & The web app already runs on any phone browser\\
   \bottomrule
@@ -340,7 +395,9 @@ patches.
   \toprule
   \textbf{Test} & \textbf{Method} & \textbf{Status} & \textbf{Result}\\
   \midrule
-  App flow & Walk through Home, Scan, Result, and History using demo light and dark frames & Done & Home, Scan, and History screens load and navigate (Figure~\ref{fig:screens}); Result screenshot to be added\\
+  App flow & Walk through Home, Scan, Result, and History using the sample photos & Done & All four screens load and navigate (Figures~\ref{fig:screens} and~\ref{fig:results})\\
+  \addlinespace
+  Sample photo check & Run the four sample photos through the analyzer & Done & All four classified as expected (Table~\ref{tab:samples})\\
   \addlinespace
   Patch bench test & Sunscreen on the patch, then UV lamp or sunlight, then wipe off & Planned & Not yet run\\
   \addlinespace
@@ -353,10 +410,29 @@ patches.
 \end{tabular}
 \end{table}
 
-\subsubsection{Planned Next Version: ML Classifier and UV Forecast}\label{sec:planned-ml}
-The version running today uses a fixed brightness rule. For the next MVP iteration we plan two
-upgrades. Neither is built yet, so the results in this report come from the current rule-based
-version only.
+\begin{table}[ht]
+\centering\small
+\caption{Sample photo check (rendered test images, not real patches)}\label{tab:samples}
+\begin{tabular}{@{}L{3.0cm}rL{2.6cm}rL{2.6cm}@{}}
+  \toprule
+  \textbf{Sample photo} & \textbf{Brightness $Y$} & \textbf{Result} & \textbf{Confidence} & \textbf{Expected}\\
+  \midrule
+  Fresh & 240 & Protected & 98\% & Protected\\
+  Fading & 142 & Protected & 74\% & Protected\\
+  Worn off & 102 & Reapply & 71\% & Reapply\\
+  Fully dark & 63 & Reapply & 96\% & Reapply\\
+  \bottomrule
+\end{tabular}
+\end{table}
+The four photos were made so that two sit well away from the threshold of 120 and two sit close to
+it. The table shows that the code applies the rule as intended and gives lower confidence near the
+threshold. It does not show that the rule works on real patches, because the colors were chosen by
+us.
+
+\subsubsection{Planned Next Version: ML Classifier and Location-Based UV}\label{sec:planned-ml}
+The version running today uses a fixed brightness rule and a UV index for one fixed city. For the
+next iteration we plan two upgrades, which are not built yet, so the results in this report come
+from the current version only.
 
 \paragraph{Machine-learning classifier.}
 The brightness rule fails when lighting changes, because the camera sees the patch and its
@@ -376,21 +452,14 @@ cropped patch image and predicts the patch state. The approach is:
 The main risk is data: with only a small number of hand-made patches, a complex model can overfit
 the batch it was trained on. This is why the rule-based version is kept as the fallback.
 
-\paragraph{UV forecast by location.}
-The app will also read the UV index forecast for the user's area. A free weather service such as
-Open-Meteo provides hourly \texttt{uv\_index} and \texttt{uv\_index\_clear\_sky} values for a given
-latitude and longitude \cite{openmeteo2026}. The forecast has three uses:
-\begin{itemize}[itemsep=0pt]
-  \item show today's UV level and the peak hours, so that users know when protection matters most;
-  \item set the timing of reminders, with shorter reminder intervals when the UV index is high;
-  \item give context to the patch reading, for example when the patch looks dark but the forecast
-    says UV is low.
-\end{itemize}
-The forecast supports the patch and does not replace it: it describes the area, while the patch
-reflects what this person's skin has actually received. Two practical points need care. First, the
-app needs the user's location; we would ask for permission, send only a rounded position, and allow a
-city to be chosen by hand instead. Second, the service requires an API key for commercial use, so its
-terms and cost must be checked before a paid launch \cite{openmeteo2026}.
+\paragraph{UV index at the user's location.}
+The UV index feature is already in the app, but for Ho Chi Minh City only. The next step is to use
+the user's own position: we would ask for location permission, send only a rounded position, and
+allow a city to be chosen by hand instead. We would also add timed reminders, which need a design
+decision because a browser app cannot rely on background alerts. The forecast supports the patch and
+does not replace it: it describes the area, while the patch reflects what this person's skin has
+actually received. The service also requires an API key for commercial use, so its terms and cost
+must be checked before a paid launch \cite{openmeteo2026}.
 
 \begin{figure}[ht]
   \centering
@@ -402,15 +471,17 @@ terms and cost must be checked before a paid launch \cite{openmeteo2026}.
     \node[b] (img) at (0,0) {Patch photo};
     \node[n] (ml) at (4.6,0.9) {\textbf{ML classifier}\\(planned)};
     \node[b] (rule) at (4.6,-0.9) {Brightness rule\\(current, fallback)};
-    \node[b] (dec) at (9.2,0) {Advice and reminder timing};
-    \node[n] (uv) at (9.2,2.3) {\textbf{UV forecast}\\by location (planned)};
+    \node[b] (dec) at (9.2,0) {Advice and scan interval};
+    \node[b] (uv) at (9.2,2.3) {\textbf{UV index}\\fixed city (built)};
+    \node[n] (loc) at (4.6,2.3) {\textbf{User location}\\(planned)};
     \draw[->, thick] (img.east) -- ++(0.5,0) |- (ml.west);
     \draw[->, thick] (img.east) -- ++(0.5,0) |- (rule.west);
     \draw[->, thick] (ml.east) -- ++(0.5,0) |- ([yshift=0.2cm]dec.west);
     \draw[->, thick] (rule.east) -- ++(0.5,0) |- ([yshift=-0.2cm]dec.west);
+    \draw[->, thick] (loc) -- (uv);
     \draw[->, thick] (uv) -- (dec);
   \end{tikzpicture}
-  \caption{Planned next version. Orange boxes are not yet built.}
+  \caption{Current and planned versions. Blue boxes are built; orange boxes are not yet built.}
   \label{fig:planned}
 \end{figure}
 
@@ -463,15 +534,21 @@ Works only when the user scans & There is no timer or push notification, so it c
 \addlinespace
 History stays in one browser & Records are limited to 50, are lost when browser data is cleared, and are not synced across devices & Add optional accounts later\\
 \addlinespace
-Needs camera, canvas, and a secure page & Older browsers or denied camera permission stop a scan; the demo buttons still work & Clear error messages (already in place)\\
+Needs camera, canvas, and a secure page & Older browsers or denied camera permission stop a live scan; the sample photos still work & Clear error messages (already in place)\\
+\addlinespace
+UV index for one city only & The card always shows Ho Chi Minh City, so users elsewhere see the wrong area & Use the phone's location or a city choice (Section~\ref{sec:planned-ml})\\
+\addlinespace
+UV data is an estimate from an outside service & It is a model forecast for the area, not a measurement on the user's skin, and the app needs the internet to refresh it (the last reading is kept if the network fails) & Present it as context only; check terms and cost of the service before a paid launch\\
+\addlinespace
+Scan intervals not validated & The suggested times in Table~\ref{tab:uvlevels} are our own choice and are not based on a study & Review with a dermatologist or published guidance\\
 \addlinespace
 Not validated with users & There are no accuracy or usability results yet & Run the tests in Table~\ref{tab:tests}\\
 \end{longtable}
 
 \subsubsection{Next Steps}
 The roadmap has four phases: a user interface with mock analysis (done), real color sampling with a
-brightness rule (done, but not calibrated), the ML classifier and UV forecast described in
-Section~\ref{sec:planned-ml}, and finally reminder scheduling with accounts and analytics. The most
-important next work is to measure real patches under Vietnamese UV conditions and to collect the
-labelled photographs that both the threshold calibration and the ML model depend on. Until these
-results exist, Uvie should be described as a reminder tool.
+brightness rule (done, but not calibrated), a UV index card for one city (done), and then the ML
+classifier, UV at the user's own location, and timed reminders (Section~\ref{sec:planned-ml}),
+followed by accounts and analytics. The most important next work is to measure real patches under
+Vietnamese UV conditions and to collect the labelled photographs that both the threshold calibration
+and the ML model depend on. Until these results exist, Uvie should be described as a reminder tool.

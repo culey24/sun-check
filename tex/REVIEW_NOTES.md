@@ -100,3 +100,12 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - Đã thay các dòng nháp đỏ bằng bảng do nhóm gửi (12 dòng). Đổi nhỏ: "TikZ/pgfplots" thành "TikZ and matplotlib" cho đúng thực tế (hình biểu đồ vẽ bằng matplotlib, không dùng pgfplots).
 - Viết lại đoạn mở đầu để khớp thực tế: Claude soạn nháp nhiều mục/phụ lục và có một ảnh do AI tạo. Câu cũ "không bị AI tạo ra phần lớn" đã bỏ vì không khớp. Còn một `TODO` đỏ: nhóm cần xác nhận đoạn này.
 - Chú thích Hình 3.1 ghi rõ là ảnh do AI tạo.
+
+## 14. Section 3 cập nhật theo code/ảnh mới (UV index, ảnh mẫu, ảnh kết quả)
+
+- Đã đọc code mới (PR #1): thẻ UV Open-Meteo (cố định TP.HCM, làm mới 15 phút, cache, cảnh báo UV ≥ 6, gợi ý khoảng quét lại theo mức UV), 4 ảnh mẫu, lịch sử mẫu, tùy chọn `?uv=9` để thử. Mục "UV forecast" đã chuyển từ kế hoạch sang "đã làm (một thành phố)"; phần chưa làm: lấy vị trí người dùng, nhắc hẹn giờ, bộ phân loại ML.
+- Thêm FR-7, bảng mức UV (Bảng 3.3), mục `UV index feature`, bảng "Sample photo check" (Y và kết quả tính lại từ 4 ảnh mẫu, khớp với ảnh chụp màn hình), Hình 3.3 (Home, Scan, History) và Hình 3.4 (Result Protected/Reapply).
+- **Lưu ý trung thực:** 4 ảnh mẫu do script `generate_sample_photos.py` vẽ ra, **không phải ảnh patch thật**. Bài ghi rõ đây chỉ kiểm tra app chạy đúng, không đo độ chính xác. Không dùng bảng này như kết quả "chỉnh ngưỡng".
+- Các khoảng thời gian quét lại (45/60/90/120 phút) là lựa chọn thiết kế của nhóm, chưa có nguồn; bài ghi rõ là chưa kiểm chứng.
+- Ảnh chụp lúc 19:30 nên thẻ UV hiện "Sun is down"; bạn có thể chụp lại ban ngày (hoặc dùng `?uv=9`) để thấy cảnh báo UV cao nếu muốn.
+- Số dòng code: ~1.500 (đã sửa từ "dưới 1.000").
