@@ -114,5 +114,5 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 
 - Sản lượng Mục 6 ngầm định ~1,5 (năm 1), 1,67, 1,67 gói/khách mới nên LTV cơ sở đổi từ 3 gói thành **1,6 gói/năm**: LTV = 55.000 × 1,6 × 2 = **176.000 đ**; LTV/CAC = **5,9× / 8,8× / 10,6×**. Kịch bản lạc quan 3 gói/năm (LTV 330.000; 11,0× / 16,5× / 19,8×) vẫn được giữ trong Bảng 6.9 và ghi rõ là upside.
 - Đã sửa cho khớp: Mục 1 (giả định), Mục 2 (đoạn mở đầu và nhận xét cuối; **TAM/SAM vẫn tính theo 3 gói/người/năm** và đã ghi rõ là nhu cầu ở mức dùng đầy đủ, không phải dự báo bán hàng), Mục 4 (canvas, bảng unit economics, bảng rủi ro), Mục 5 (so sánh CAC, KPI), Mục 6 (LTV, bảng LTV/CAC, nhận xét).
-- **Chưa đổi:** doanh thu, NPV, IRR, break-even (không phụ thuộc LTV). File Excel `9.1 LTV.xlsx` của nhóm có thể vẫn dùng 3 gói; cần cập nhật cho khớp nếu nộp kèm.
+- **Chưa đổi:** doanh thu, NPV, IRR, break-even (không phụ thuộc LTV). `9.1 LTV.xlsx` trong project là bảng mẫu của môn (ví dụ "Widget", chưa có số Uvie) nên không cần sửa cho khớp.
 - Báo bạn phụ trách Mục 6 (Thy) và Mục 2 (Hà) biết về thay đổi này.
