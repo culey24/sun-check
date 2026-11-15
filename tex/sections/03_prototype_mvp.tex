@@ -337,6 +337,67 @@ patches.
 \end{tabular}
 \end{table}
 
+\subsubsection{Planned Next Version: ML Classifier and UV Forecast}\label{sec:planned-ml}
+The version running today uses a fixed brightness rule. For the next MVP iteration we plan two
+upgrades. Neither is built yet, so the results in this report come from the current rule-based
+version only.
+
+\paragraph{Machine-learning classifier.}
+The brightness rule fails when lighting changes, because the camera sees the patch and its
+surroundings under different light. We plan to replace it with a learned model that takes the
+cropped patch image and predicts the patch state. The approach is:
+\begin{enumerate}[itemsep=0pt]
+  \item \textbf{Collect data.} Photograph patches at different exposure times, in indoor, shade,
+    and direct-sun lighting, with several phones and on several skin tones. Each photo is labelled
+    with the exposure time and, where possible, a UV index reading.
+  \item \textbf{Train a small model.} Start with simple color features (average color in RGB and HSV)
+    and a basic classifier, then try a lightweight image network fine-tuned on our photographs. The
+    model must be small enough to run in the browser so that images still stay on the phone.
+  \item \textbf{Compare with the baseline.} Test on photographs not used for training, split by
+    phone and lighting, and report accuracy against the current brightness rule. The model is adopted
+    only if it is clearly better.
+\end{enumerate}
+The main risk is data: with only a small number of hand-made patches, a complex model can overfit
+the batch it was trained on. This is why the rule-based version is kept as the fallback.
+
+\paragraph{UV forecast by location.}
+The app will also read the UV index forecast for the user's area. A free weather service such as
+Open-Meteo provides hourly \texttt{uv\_index} and \texttt{uv\_index\_clear\_sky} values for a given
+latitude and longitude \cite{openmeteo2026}. The forecast has three uses:
+\begin{itemize}[itemsep=0pt]
+  \item show today's UV level and the peak hours, so that users know when protection matters most;
+  \item set the timing of reminders, with shorter reminder intervals when the UV index is high;
+  \item give context to the patch reading, for example when the patch looks dark but the forecast
+    says UV is low.
+\end{itemize}
+The forecast supports the patch and does not replace it: it describes the area, while the patch
+reflects what this person's skin has actually received. Two practical points need care. First, the
+app needs the user's location; we would ask for permission, send only a rounded position, and allow a
+city to be chosen by hand instead. Second, the service requires an API key for commercial use, so its
+terms and cost must be checked before a paid launch \cite{openmeteo2026}.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      b/.style={draw, rounded corners, align=center, font=\small, minimum height=1.1cm,
+                text width=3.4cm, fill=blue!6},
+      n/.style={b, fill=orange!12},
+      >=Stealth, node distance=0.8cm]
+    \node[b] (img) at (0,0) {Patch photo};
+    \node[n] (ml) at (4.6,0.9) {\textbf{ML classifier}\\(planned)};
+    \node[b] (rule) at (4.6,-0.9) {Brightness rule\\(current, fallback)};
+    \node[b] (dec) at (9.2,0) {Advice and reminder timing};
+    \node[n] (uv) at (9.2,2.3) {\textbf{UV forecast}\\by location (planned)};
+    \draw[->, thick] (img.east) -- ++(0.5,0) |- (ml.west);
+    \draw[->, thick] (img.east) -- ++(0.5,0) |- (rule.west);
+    \draw[->, thick] (ml.east) -- ++(0.5,0) |- ([yshift=0.2cm]dec.west);
+    \draw[->, thick] (rule.east) -- ++(0.5,0) |- ([yshift=-0.2cm]dec.west);
+    \draw[->, thick] (uv) -- (dec);
+  \end{tikzpicture}
+  \caption{Planned next version. Orange boxes are not yet built.}
+  \label{fig:planned}
+\end{figure}
+
 \subsubsection{Current Limitations}
 We separate the limitations of the patch from those of the web app, because they need different
 fixes.
@@ -392,8 +453,9 @@ Not validated with users & There are no accuracy or usability results yet & Run 
 \end{longtable}
 
 \subsubsection{Next Steps}
-The roadmap has four phases: a user interface with mock analysis (done), real color sampling and
-classification, reminder scheduling, and finally accounts and analytics. The next two pieces of
-work are the most important: measuring real patches under Vietnamese UV conditions, and using those
-photographs to calibrate the threshold, with a reference color if needed. Uvie should be described
-as a reminder tool until these results exist.
+The roadmap has four phases: a user interface with mock analysis (done), real color sampling with a
+brightness rule (done, but not calibrated), the ML classifier and UV forecast described in
+Section~\ref{sec:planned-ml}, and finally reminder scheduling with accounts and analytics. The most
+important next work is to measure real patches under Vietnamese UV conditions and to collect the
+labelled photographs that both the threshold calibration and the ML model depend on. Until these
+results exist, Uvie should be described as a reminder tool.
