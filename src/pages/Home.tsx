@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Camera, ScanLine, Sun, TriangleAlert } from 'lucide-react';
 import { buttonClasses } from '../components/Button';
 import Card from '../components/Card';
+import UvCard from '../components/UvCard';
 
 const STEPS = [
   {
@@ -41,6 +42,8 @@ export default function Home() {
           Scan sticker
         </Link>
       </section>
+
+      <UvCard />
 
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">

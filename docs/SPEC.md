@@ -96,6 +96,9 @@ color-detection is wired up.
 - FR-4: The app shows a clear alert when the state is **Reapply**.
 - FR-5: The app keeps a basic local history of scans.
 - FR-6: All essential flows work with mock analysis data in the MVP.
+- FR-7: The app shows the local UV index (MVP: Ho Chi Minh City only, via Open-Meteo)
+  with its WHO level, an hourly forecast, and a warning when UV is High (≥ 6) now or
+  later today. The scan result suggests when to re-scan based on the current UV level.
 
 ## 6. Non-Functional Requirements
 
@@ -123,6 +126,7 @@ src/
     Layout.tsx
     CameraView (inlined in Scan) / StickerGuide.tsx
     StatusBadge.tsx
+    UvCard.tsx          # UV index card (Home) + compact UvChip
     AlertBanner.tsx
     Card.tsx
     Button.tsx
@@ -130,10 +134,12 @@ src/
     types.ts            # ScanResult, StickerState
     analyzeSticker.ts   # center-sample luminance heuristic (MVP)
     capture.ts          # video frame -> JPEG data URL
-    sampleFrame.ts      # synthetic frame for camera-less demos
+    sampleData.ts       # sample sticker photos + sample scan history for testing
+    uv.ts               # Open-Meteo UV index fetch, WHO levels, cache
     history.ts          # localStorage helpers
   hooks/
     useCamera.ts        # getUserMedia lifecycle
+    useUvIndex.ts       # UV forecast with 15-min cache/refresh
 ```
 
 ## 8. Design & Brand

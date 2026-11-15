@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Trash2 } from 'lucide-react';
+import { Camera, Database, Trash2 } from 'lucide-react';
 import { buttonClasses } from '../components/Button';
 import Card from '../components/Card';
 import StatusBadge from '../components/StatusBadge';
-import { clearHistory, loadHistory } from '../lib/history';
+import { clearHistory, loadHistory, replaceHistory } from '../lib/history';
+import { createSampleHistory } from '../lib/sampleData';
 import type { ScanResult } from '../lib/types';
 
 function formatDateTime(timestamp: number): string {
@@ -22,6 +23,10 @@ export default function History() {
   const handleClear = () => {
     clearHistory();
     setEntries([]);
+  };
+
+  const handleLoadSample = () => {
+    setEntries(replaceHistory(createSampleHistory()));
   };
 
   return (
@@ -50,10 +55,20 @@ export default function History() {
       {entries.length === 0 ? (
         <Card className="flex flex-col items-center gap-3 py-8 text-center">
           <p className="text-sm text-neutral-600">No scans yet.</p>
-          <Link to="/scan" className={buttonClasses('primary', 'md')}>
-            <Camera className="h-4 w-4" aria-hidden="true" />
-            Scan a sticker
-          </Link>
+          <div className="flex flex-wrap justify-center gap-2">
+            <Link to="/scan" className={buttonClasses('primary', 'md')}>
+              <Camera className="h-4 w-4" aria-hidden="true" />
+              Scan a sticker
+            </Link>
+            <button
+              type="button"
+              onClick={handleLoadSample}
+              className={buttonClasses('secondary', 'md')}
+            >
+              <Database className="h-4 w-4" aria-hidden="true" />
+              Load sample data
+            </button>
+          </div>
         </Card>
       ) : (
         <ul className="flex flex-col gap-3">

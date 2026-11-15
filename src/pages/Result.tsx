@@ -5,7 +5,10 @@ import AlertBanner from '../components/AlertBanner';
 import { buttonClasses } from '../components/Button';
 import Card from '../components/Card';
 import StatusBadge from '../components/StatusBadge';
+import { UvChip } from '../components/UvCard';
+import { useUvIndex } from '../hooks/useUvIndex';
 import { addScan } from '../lib/history';
+import { uvLevel } from '../lib/uv';
 import type { ScanResult } from '../lib/types';
 
 function formatTime(timestamp: number): string {
@@ -19,6 +22,7 @@ export default function Result() {
   const location = useLocation();
   const result = (location.state as { result?: ScanResult } | null)?.result;
   const recordedRef = useRef(false);
+  const { forecast } = useUvIndex();
 
   useEffect(() => {
     if (result && !recordedRef.current) {
@@ -33,12 +37,20 @@ export default function Result() {
 
   const isReapply = result.state === 'reapply';
   const confidencePercent = Math.round(result.confidence * 100);
+  const uv = forecast?.isDay ? uvLevel(forecast.current) : null;
+  const uvTip =
+    uv?.checkEveryMinutes != null
+      ? ` UV is ${uv.label.toLowerCase()} in ${forecast!.location.name} right now, so scan again in about ${uv.checkEveryMinutes} minutes.`
+      : '';
 
   return (
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="text-xl font-bold tracking-tight">Scan result</h1>
         <p className="text-sm text-neutral-600">Captured at {formatTime(result.capturedAt)}</p>
+        <div className="mt-2">
+          <UvChip />
+        </div>
       </div>
 
       {isReapply ? (
@@ -74,8 +86,8 @@ export default function Result() {
         </p>
         <Card className="text-sm text-neutral-700">
           {isReapply
-            ? 'Apply a generous, even layer of sunscreen and let it dry. Re-scan afterwards to confirm the sticker stays light.'
-            : 'Re-scan whenever you have been in the sun for a while, or after swimming and sweating.'}
+            ? `Apply a generous, even layer of sunscreen and let it dry. Re-scan afterwards to confirm the sticker stays light.${uvTip}`
+            : `Re-scan whenever you have been in the sun for a while, or after swimming and sweating.${uvTip}`}
         </Card>
       </div>
 

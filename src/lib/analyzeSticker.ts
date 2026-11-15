@@ -16,12 +16,12 @@ interface Rgb {
   b: number;
 }
 
-function loadImage(dataUrl: string): Promise<HTMLImageElement> {
+function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const image = new Image();
     image.onload = () => resolve(image);
     image.onerror = () => reject(new Error('Could not read the captured frame.'));
-    image.src = dataUrl;
+    image.src = src;
   });
 }
 
@@ -75,8 +75,8 @@ function createId(): string {
  * (sticker has turned dark under UV). Heuristic MVP: works on the average color of
  * the frame's center, where the on-screen guide tells the user to place the sticker.
  */
-export async function analyzeSticker(dataUrl: string): Promise<ScanResult> {
-  const image = await loadImage(dataUrl);
+export async function analyzeSticker(src: string): Promise<ScanResult> {
+  const image = await loadImage(src);
   const rgb = sampleCenter(image);
   const lum = luminance(rgb);
 
