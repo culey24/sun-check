@@ -114,17 +114,91 @@ specification and shows how each one is met in the current build.
 \end{tabular}
 \end{table}
 
-\paragraph{How the classification works.}
-The app takes the central 40\% of the captured image, which is where the on-screen
-guide asks the user to place the patch, and averages its pixels. It converts the
-average color to a luminance value between 0 (black) and 255 (white) using the
-standard weights for red, green, and blue (0.2126, 0.7152, and 0.0722). A luminance
-below 120 is treated as a dark patch, so the app reports \emph{Reapply}; anything
-else is reported as \emph{Protected}. The confidence value starts at 60\% right at
-the threshold and rises linearly to a cap of 98\% once the luminance is 60 or more
-units away from it (Figure~\ref{fig:confidence}). Because of this, a patch that sits
-close to the threshold produces a low-confidence result rather than a false sense
-of certainty.
+\subsubsection{Web App Architecture and Deployment}
+The app is a single-page web application with no server of its own. Everything, from camera
+access to the result, runs in the user's browser, which keeps the MVP cheap to host and easy to
+try. Figure~\ref{fig:pipeline} shows how one scan moves through the app.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      b/.style={draw, rounded corners, align=center, font=\small, minimum height=1.25cm,
+                text width=3.6cm, fill=blue!6},
+      >=Stealth, node distance=0.9cm]
+    \node[b] (cam) {\textbf{1. Camera}\\live preview from the rear camera};
+    \node[b, right=of cam] (cap) {\textbf{2. Capture}\\current frame saved as a JPEG image};
+    \node[b, right=of cap] (ana) {\textbf{3. Analyze}\\central crop, average color, brightness rule};
+    \node[b, below=1.0cm of ana] (res) {\textbf{4. Result screen}\\state, color, confidence};
+    \node[b, left=of res] (his) {\textbf{5. History}\\last 50 scans, kept in the browser};
+    \draw[->, thick] (cam) -- (cap);
+    \draw[->, thick] (cap) -- (ana);
+    \draw[->, thick] (ana) -- (res);
+    \draw[->, thick] (res) -- (his);
+  \end{tikzpicture}
+  \caption{Data flow of one scan in the Uvie web app. No image leaves the phone.}
+  \label{fig:pipeline}
+\end{figure}
+
+Table~\ref{tab:modules} lists the main parts of the code, which is written in TypeScript and is
+under 1,000 lines in total.
+
+\begin{table}[ht]
+\centering\small
+\caption{Main modules of the web app}\label{tab:modules}
+\begin{tabular}{@{}L{4.6cm}L{9.6cm}@{}}
+  \toprule
+  \textbf{Module} & \textbf{Role}\\
+  \midrule
+  Pages: Home, Scan, Result, History & The four screens in Figure~\ref{fig:flow}, connected by client-side routing; the result is handed from Scan to Result when the page changes\\
+  \addlinespace
+  Components & Shared interface pieces: layout, card, button, status badge, alert banner, and the on-screen patch guide\\
+  \addlinespace
+  Camera hook & Starts and stops the camera, prefers the rear camera, and reports permission or device errors\\
+  \addlinespace
+  Capture & Draws the current video frame onto a canvas and exports it as a JPEG (quality 0.9)\\
+  \addlinespace
+  Analyzer & Turns a frame into a result: state, sampled color, brightness, and confidence\\
+  \addlinespace
+  History & Saves up to 50 results in the browser's local storage and ignores storage errors\\
+  \addlinespace
+  Sample frame & Draws a synthetic light or dark frame for the demo buttons, which pass through the same analyzer\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+The interface is built with React and styled with Tailwind CSS; Vite builds the project. It is
+published as a static site on Render: each push to the main branch triggers the build
+(\texttt{npm ci} and \texttt{npm run build} on Node 22), the site falls back to the home page for any
+route so that client-side routing works, and the generated asset files are cached for a long time.
+
+\subsubsection{Recognition Algorithm}
+The app does not use machine learning. It applies a fixed rule to the color of the patch, which is
+simple, fast, and easy to explain, and it needs no training photographs that we do not yet have.
+For one captured frame the steps are:
+\begin{enumerate}[itemsep=0pt]
+  \item \textbf{Crop.} Take the central square whose side is 40\% of the shorter side of the
+    image. This is where the on-screen guide asks the user to place the patch.
+  \item \textbf{Average.} Compute the mean red, green, and blue values of all pixels in the square.
+  \item \textbf{Brightness.} Convert the mean color to a single brightness value $Y$ between 0
+    (black) and 255 (white) with the usual weights for the three channels, applied directly to the
+    pixel values:
+    \begin{equation}
+      Y = 0.2126\,R + 0.7152\,G + 0.0722\,B .
+    \end{equation}
+  \item \textbf{Decide.} If $Y < 120$ the patch is dark, so the app reports \emph{Reapply}; otherwise
+    it reports \emph{Protected}.
+  \item \textbf{Confidence.} Report
+    \begin{equation}
+      c = \min\!\left(0.98,\; 0.60 + 0.38 \cdot \frac{|Y - 120|}{60}\right),
+    \end{equation}
+    which is 60\% at the threshold and reaches the 98\% cap when $Y$ is 60 or more units away from
+    it (Figure~\ref{fig:confidence}).
+\end{enumerate}
+The app also shows the sampled color as a hex code so that testers can check what the camera saw.
+The confidence value is a measure of distance from the threshold and is not a statistical probability.
+It does mean that a patch close to the threshold gives a low-confidence answer instead of a false
+sense of certainty. A learned classifier trained on labelled photographs of real patches is a
+possible later step; the current rule is a baseline to compare it with.
 
 \begin{figure}[ht]
   \centering
@@ -263,23 +337,63 @@ patches.
 \end{tabular}
 \end{table}
 
-\subsubsection{Known Limitations and Next Steps}
-We want to be clear about the weaknesses of the current prototype.
-\begin{itemize}[itemsep=0pt]
-  \item \textbf{The classifier is a heuristic.} It looks only at average brightness,
-    so strong glare, shadows, or a dim room can change the reading. A possible
-    improvement, still to be tested, is to print a reference color beside the
-    patch so that lighting affects both in the same way.
-  \item \textbf{Photochromic indicators have limits.} A laboratory study of ten
-    commercial photochromic devices found that they changed color within about a
-    minute even under SPF 50+ sunscreen at a UV index of 10, and that their color
-    saturated at moderate UV levels. The authors concluded that such devices can
-    raise awareness but are of limited use for measuring UV dose \cite{aguilera2024}.
-    Uvie should therefore be described as a reminder tool and not as a measurement
-    device, and our own patches need to be tested under Vietnamese UV conditions,
-    which are often above index 9 (Figure~\ref{fig:uv-vietnam}).
-  \item \textbf{No reminder scheduling yet.} The app answers only when a user scans.
-    Timed reminders and notifications are on the roadmap.
-\end{itemize}
-The roadmap has four phases: a UI with mock analysis (done), real color sampling and
-classification, reminder scheduling, and finally accounts and analytics.
+\subsubsection{Current Limitations}
+We separate the limitations of the patch from those of the web app, because they need different
+fixes.
+
+\paragraph{Limitations of the patch.}
+\begin{longtable}{@{}L{3.6cm}L{6.3cm}L{4.2cm}@{}}
+\caption{Limitations of the patch}\label{tab:limits-patch}\\
+\toprule \textbf{Limitation} & \textbf{Why it matters} & \textbf{Planned response}\\ \midrule
+\endfirsthead
+\toprule \textbf{Limitation} & \textbf{Why it matters} & \textbf{Planned response}\\ \midrule
+\endhead
+\bottomrule
+\endfoot
+Reacts to UV, not to sunscreen performance & Commercial photochromic indicators changed color within about a minute even under SPF 50+ at UV index 10, and saturated at moderate UV \cite{aguilera2024}; the patch may darken even while sunscreen still protects well & Present Uvie as a reminder, not a measurement; test several SPF levels (Appendix~\ref{app:photochromic})\\
+\addlinespace
+Fades on its own & The colored form returns to the colorless form through heat, so the reading depends on time and temperature (Appendix~\ref{app:photochromic}) & Measure the fade time; tell users to scan soon after checking\\
+\addlinespace
+Checks one spot only & Coverage and wear on the rest of the skin are unknown & Advise placing it on an exposed area such as the forearm\\
+\addlinespace
+Hand-made and uncharacterized & Color contrast, batch-to-batch variation, adhesion, and shelf life have not been measured & Follow the characterization plan (Table~\ref{tab:photochromic-plan})\\
+\addlinespace
+Sensitive to daylight before use & The pigment reacts to light, so unprotected packs could darken before they are used & Design UV-blocking packaging\\
+\addlinespace
+May depend on skin tone & A translucent base lets the skin show through, which may change the measured brightness (a hypothesis still to be tested) & Test on a range of skin tones; consider an opaque or white backing\\
+\addlinespace
+Skin safety unverified & No laboratory review of pigment, solvent, or adhesive has been done & Laboratory review before any sale (Section~\ref{sec:business-model})\\
+\end{longtable}
+
+\paragraph{Limitations of the web app.}
+\begin{longtable}{@{}L{3.6cm}L{6.3cm}L{4.2cm}@{}}
+\caption{Limitations of the web app}\label{tab:limits-web}\\
+\toprule \textbf{Limitation} & \textbf{Why it matters} & \textbf{Planned response}\\ \midrule
+\endfirsthead
+\toprule \textbf{Limitation} & \textbf{Why it matters} & \textbf{Planned response}\\ \midrule
+\endhead
+\bottomrule
+\endfoot
+Uncalibrated threshold & The value 120 is a first estimate, not fitted to real patches & Tune it on photographs of real patches (Table~\ref{tab:tests})\\
+\addlinespace
+Sensitive to lighting & Only average brightness is used, and phone cameras adjust exposure automatically, so glare, shadow, or a dim room change the reading & Add a printed reference color beside the patch and compare the two\\
+\addlinespace
+Does not find the patch & It assumes the patch fills the central crop; if it is misaligned, skin or background enters the average & Detect the circular patch before sampling\\
+\addlinespace
+Only two outcomes & It cannot show how strong or how long the exposure has been, and the confidence is not a true probability & Collect labelled data; consider more levels\\
+\addlinespace
+Works only when the user scans & There is no timer or push notification, so it cannot remind someone who does not open it & Add timed reminders\\
+\addlinespace
+History stays in one browser & Records are limited to 50, are lost when browser data is cleared, and are not synced across devices & Add optional accounts later\\
+\addlinespace
+Needs camera, canvas, and a secure page & Older browsers or denied camera permission stop a scan; the demo buttons still work & Clear error messages (already in place)\\
+\addlinespace
+Not validated with users & There are no accuracy or usability results yet & Run the tests in Table~\ref{tab:tests}\\
+\end{longtable}
+
+\subsubsection{Next Steps}
+The roadmap has four phases: a user interface with mock analysis (done), real color sampling and
+classification, reminder scheduling, and finally accounts and analytics. The next two pieces of
+work are the most important: measuring real patches under Vietnamese UV conditions, and using those
+photographs to calibrate the threshold, with a reference color if needed. Uvie should be described
+as a reminder tool until these results exist.

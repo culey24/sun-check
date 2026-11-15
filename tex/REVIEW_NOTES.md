@@ -66,3 +66,10 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - Báo cáo cũ ghi app dùng **Machine Learning**, nhưng code hiện tại chỉ là ngưỡng độ sáng (luminance 120). Bài mới mô tả đúng theo code. Hoặc nhóm làm thật phần ML, hoặc giữ cách mô tả hiện tại.
 - Báo cáo cũ ghi **push notification tự động**; MVP hiện chưa có (chỉ trả lời khi quét). Bài mới ghi đây là tầm nhìn đầy đủ.
 - Thuật ngữ: báo cáo cũ dùng "stamp", "mobile application". Bài mới dùng "patch" và "web app".
+
+## 9. Section 3 mở rộng (kiến trúc web, thuật toán, hạn chế)
+
+- Thêm mục **Web App Architecture and Deployment** (sơ đồ luồng dữ liệu, bảng module, triển khai trên Render) và **Recognition Algorithm** (5 bước, 2 công thức) dựa trực tiếp trên code `src/lib/analyzeSticker.ts`.
+- Tách **hạn chế của patch (Bảng 3.6)** và **hạn chế của web app (Bảng 3.7)**. Một số dòng là giả thuyết cần test (ví dụ: màu da ảnh hưởng độ sáng; bao bì cần chắn UV), đã ghi rõ là chưa kiểm chứng.
+- Bài ghi rõ app **không dùng machine learning** và độ tin cậy **không phải xác suất thống kê**. Nếu nhóm muốn nói có ML thì phải làm thật trước.
+- "Dưới 1.000 dòng code" lấy từ số dòng hiện tại (~870 dòng); cập nhật nếu code lớn hơn.
