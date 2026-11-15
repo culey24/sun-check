@@ -94,3 +94,9 @@ Có thể thêm câu về Horsham et al. 2020 (sticker UV giúp tăng lượng k
 - Đã cập nhật cho thống nhất: B.5 (phần diễn giải), Section 1 (giới hạn + danh sách giả định), Section 4 (nhận xét về giá), Section 5 (kênh bán).
 - **Điểm cần chú ý:** chỉ 45,0% (18/40) chịu trả từ 89.000đ trở lên và 47,5% có khả năng mua ở mức giá này. Báo cáo ghi giá 89.000đ là "giả thuyết cần kiểm tra", không phải đã được xác nhận. Nếu nhóm muốn giữ giá, cần lập luận khác; nếu hạ giá, phải sửa Section 4, 5, 6 và LTV/CAC.
 - Khảo sát không đo tần suất mua lại, nên giả định "3 gói/năm" trong LTV vẫn chưa được kiểm chứng.
+
+## 13. Appendix A đã điền theo bảng nhóm cung cấp
+
+- Đã thay các dòng nháp đỏ bằng bảng do nhóm gửi (12 dòng). Đổi nhỏ: "TikZ/pgfplots" thành "TikZ and matplotlib" cho đúng thực tế (hình biểu đồ vẽ bằng matplotlib, không dùng pgfplots).
+- Viết lại đoạn mở đầu để khớp thực tế: Claude soạn nháp nhiều mục/phụ lục và có một ảnh do AI tạo. Câu cũ "không bị AI tạo ra phần lớn" đã bỏ vì không khớp. Còn một `TODO` đỏ: nhóm cần xác nhận đoạn này.
+- Chú thích Hình 3.1 ghi rõ là ảnh do AI tạo.
